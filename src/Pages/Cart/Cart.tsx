@@ -1,10 +1,8 @@
 // tsrfc
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 export default function Cart({}: Props) {
-  return (
-    <div>Cart</div>
-  )
+  return <div>Cart</div>;
 }

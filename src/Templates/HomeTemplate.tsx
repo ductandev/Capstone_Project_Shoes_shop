@@ -1,25 +1,23 @@
 // tsrfc
-import React from 'react'
-import Header from '../Components/Header/Header'
-import { Outlet } from 'react-router-dom'
+import React from "react";
+import Header from "../Components/Header/Header";
+import HeaderMobile from "../Components/Header/HeaderMobile";
+import ResponsiveItem from "./ResponsiveItem";
+import { Outlet } from "react-router-dom";
 
-type Props = {}
+type Props = {};
 
-const HomeTemplate: React.FC = ({ }: Props): JSX.Element => {
-    return (
-        <>
-            <Header></Header>
-            <div className="content-layout" style={{ minHeight: '80vh' }}>
-                <Outlet></Outlet>
-            </div>
+const HomeTemplate: React.FC = ({}: Props): JSX.Element => {
+  return (
+    <>
+      <ResponsiveItem component={Header} largeTableComponent={HeaderMobile} />
+      <div className="content-layout" style={{ minHeight: "80vh" }}>
+        <Outlet></Outlet>
+      </div>
 
+      <footer className="bg-dark text-white text-center">Footer</footer>
+    </>
+  );
+};
 
-            <footer className='bg-dark text-white text-center'>
-                Footer
-            </footer>
-        </>
-    )
-}
-
-
-export default HomeTemplate
+export default HomeTemplate;
