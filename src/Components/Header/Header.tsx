@@ -1,5 +1,5 @@
 // tsrfc
-import { Col, Row, Input, Image, Space, Carousel } from "antd";
+import { Col, Row, Input, Space, Carousel } from "antd";
 import styles from "./header.module.css";
 
 import React from "react";

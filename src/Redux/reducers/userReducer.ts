@@ -1,8 +1,9 @@
 //rxslice
 
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { USER_LOGIN, getStoreJson, http } from "../../utils/config";
+import { USER_LOGIN, getStoreJson, httpNonAuth } from "../../utils/config";
 import { UserLoginFrm } from "../../Pages/Login/Login";
+import { UserRegisterFrm } from "../../Pages/Register/Register";
 
 export interface UserLoginApi {
   email: "";
@@ -58,7 +59,20 @@ export const loginAsyncAction = createAsyncThunk(
   async (userLogin: UserLoginFrm) => {
     //call api
 
-    const res = await http.post("/api/Users/signin", userLogin);
+    const res = await httpNonAuth.post("/api/Users/signin", userLogin);
+
+    console.log(res);
+    return res.data.content;
+  }
+);
+
+
+export const registerAsyncAction = createAsyncThunk(
+  "registerAsyncAction",
+  async (userRegister: UserRegisterFrm) => {
+    //call api
+
+    const res = await httpNonAuth.post("/api/Users/signup", userRegister);
 
     console.log(res);
     return res.data.content;
