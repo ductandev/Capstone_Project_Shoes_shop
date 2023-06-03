@@ -7,7 +7,7 @@ import { loginAsyncAction } from "../../Redux/reducers/userReducer";
 import styles from "./login.module.css";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 type Props = {};
 
 export interface UserLoginFrm {
@@ -16,6 +16,7 @@ export interface UserLoginFrm {
 }
 
 export default function Login({}: Props) {
+  const navigate = useNavigate();
   // const [passwordVisible, setPasswordVisible] = React.useState(false);
   const dispatch: DispatchType = useDispatch();
 
@@ -39,6 +40,7 @@ export default function Login({}: Props) {
       console.log(values);
       const actionApi = loginAsyncAction(values);
       dispatch(actionApi);
+      navigate("/");
     },
   });
 

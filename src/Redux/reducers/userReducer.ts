@@ -70,10 +70,7 @@ export const loginAsyncAction = createAsyncThunk(
 export const registerAsyncAction = createAsyncThunk(
   "registerAsyncAction",
   async (userRegister: UserRegisterFrm) => {
-    //call api
-
     const res = await httpNonAuth.post("/api/Users/signup", userRegister);
-
     console.log(res);
     return res.data.content;
   }
