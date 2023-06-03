@@ -7,9 +7,8 @@ import { registerAsyncAction } from "../../Redux/reducers/userReducer";
 import styles from "./register.module.css";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import type { RadioChangeEvent } from "antd";
 type Props = {};
 
 export interface UserRegisterFrm {
@@ -21,12 +20,8 @@ export interface UserRegisterFrm {
 }
 
 export default function Register({}: Props) {
-  const [value, setValue] = useState(1);
+  const navigate = useNavigate();
 
-  const onChange = (e: RadioChangeEvent) => {
-    console.log("radio checked", e.target.value);
-    setValue(e.target.value);
-  };
   // const [passwordVisible, setPasswordVisible] = React.useState(false);
   const dispatch: DispatchType = useDispatch();
 
@@ -58,6 +53,7 @@ export default function Register({}: Props) {
       console.log(values);
       const actionApi = registerAsyncAction(values);
       dispatch(actionApi);
+      navigate("/login");
     },
   });
 
