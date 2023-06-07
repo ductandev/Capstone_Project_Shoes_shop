@@ -1,10 +1,8 @@
 import ReactDOM from "react-dom/client";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-import {
-  unstable_HistoryRouter as HistoryRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { unstable_HistoryRouter as HistoryRouter, Routes, Route } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
 import HomeTemplate from "./Templates/HomeTemplate";
@@ -17,6 +15,10 @@ import { store } from "./Redux/configStore";
 import { Provider } from "react-redux";
 import Loading from "./Components/Loading/Loading";
 import "./globalStyles.css";
+import ResponsiveItem from "./Templates/ResponsiveItem";
+import Home from "./Pages/Home/Home";
+import HomeMobile from "./Pages/Home/HomeMobile";
+import Detail from "./Pages/Detail/Detail";
 
 export const history: any = createBrowserHistory();
 
@@ -29,6 +31,10 @@ root.render(
     <HistoryRouter history={history}>
       <Routes>
         <Route path="" element={<HomeTemplate />}>
+          <Route index element={<ResponsiveItem component={Home} tabletComponent={HomeMobile} />}></Route>
+          <Route path="detail">
+            <Route path=':id' element={<Detail />}></Route>
+          </Route>
           <Route path="login" element={<Login />}></Route>
           <Route path="register" element={<Register />} />
           <Route path="cart" element={<Cart />} />

@@ -6,7 +6,7 @@ import { ProductModel, getDataProductApi, getPagingApi } from "../../Redux/reduc
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Col, Row, Space } from "antd";
-import styles from "./home.module.css";
+import styles from "./homeMobile.module.css";
 
 //Owl Carousel Libraries and Module
 import OwlCarousel from 'react-owl-carousel';
@@ -16,7 +16,7 @@ import AllProduct from "../../Components/Product/AllProduct";
 
 type Props = {};
 
-export default function Home({ }: Props) {
+export default function HomeMobile({ }: Props) {
     //Owl Carousel Settings
     const options = {
         margin: 30,
@@ -83,7 +83,7 @@ export default function Home({ }: Props) {
 
     const renderProducts = (): JSX.Element[] => {
         return arrPaging.map((item: ProductModel, index) => {
-            return <Col xs={24} md={12} lg={8} xl={6} key={item.id}>
+            return <Col xs={12} md={12} lg={8} xl={6} key={item.id}>
                 <Product product={item} />
             </Col>
         })
@@ -100,7 +100,7 @@ export default function Home({ }: Props) {
             </div>
 
             <h3 className={styles.headline}>TRENDING</h3>
-            <div className={styles.mx}>
+            <div >
             <Row gutter={[24,24]}>
                     {renderProducts()}
                 </Row>
