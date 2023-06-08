@@ -3,6 +3,7 @@ import { DispatchType } from '../configStore';
 import axios from 'axios';
 import { httpNonAuth } from '../../utils/config';
 
+
 export interface ProductModel {
     id: number;
     name: string;
@@ -42,6 +43,7 @@ const productReducer = createSlice({
         getCategoryAction: (state:ProductState, action:PayloadAction<ProductModel[]>) => {
             state.arrCategory =action.payload;
         },
+
     }
 });
 
@@ -77,7 +79,7 @@ export const getProductByCategoryApi = (categoryId:string) => {
 
         const res = await httpNonAuth.get(`/api/Product/getProductByCategory?categoryId=${categoryId}`);
 
-        const action:PayloadAction<ProductModel[]> = getPagingAction(res.data.content);
+        const action:PayloadAction<ProductModel[]> = getCategoryAction(res.data.content);
         dispatch(action);
     }
 }

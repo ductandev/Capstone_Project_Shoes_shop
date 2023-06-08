@@ -11,7 +11,6 @@ type Props = {
 export default function AllProduct ({product}: Props) {
 
     const categories = JSON.parse(product.categories);
-    console.log(categories[0].id)
 
     return (
         <div>

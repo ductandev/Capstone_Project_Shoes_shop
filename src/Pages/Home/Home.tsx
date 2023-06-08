@@ -58,7 +58,6 @@ export default function Home({ }: Props) {
 
     // GỌI API getpaging
     const getPaging = async (pageIndex: number, pageSize: number): Promise<void> => {
-        // const actionApi = getPagingApi(pageIndex, pageSize);
         const actionApi = getPagingApi(pageIndex, pageSize);
         dispatch(actionApi);
     }

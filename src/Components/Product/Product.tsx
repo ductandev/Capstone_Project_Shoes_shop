@@ -12,12 +12,7 @@ type Props = {
 
 export default function Product({ product }: Props) {
 
-
-    const categories = JSON.parse(product.categories);
-    console.log(categories[0].id)
-    console.log(categories)
-    
-
+    // const categories = JSON.parse(product.categories);
 
     return (
         <div>

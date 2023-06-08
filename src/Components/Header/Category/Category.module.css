@@ -1,0 +1,39 @@
+.headlineTitle{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    text-transform: uppercase;
+    margin: 20px 40px;
+}
+.mx{
+    margin: 0 40px;
+}
+
+.imgSlider{
+    background-color: #F5F5F5;
+    width: 100%;
+}
+.headline{
+    font-weight: 500;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    color: #9E3500
+}
+.headlinePrice{
+    font-weight: 400;
+    font-size: 16px;
+    color: #111111;
+    margin-bottom: 5px;
+}
+.desc{
+    margin: 0;
+    color: #757575;
+    font-size: 16px;
+}
+.viewDetail{
+    color: #111111;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+}
