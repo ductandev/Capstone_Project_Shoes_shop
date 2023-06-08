@@ -21,10 +21,13 @@ export interface ProductModel {
 export interface ProductState {
     arrProduct: ProductModel[]
     arrPaging: ProductModel[]
+    arrCategory: ProductModel[]
 }
 const initialState:ProductState = {
     arrProduct: [],
-    arrPaging:[]
+    arrPaging:[],
+    arrCategory:[],
+
 }
 const productReducer = createSlice({
     name: 'productReducer',
@@ -36,10 +39,13 @@ const productReducer = createSlice({
         getPagingAction: (state:ProductState, action:PayloadAction<ProductModel[]>) => {
             state.arrPaging =action.payload;
         },
+        getCategoryAction: (state:ProductState, action:PayloadAction<ProductModel[]>) => {
+            state.arrCategory =action.payload;
+        },
     }
 });
 
-export const { getProductsAction, getPagingAction} = productReducer.actions
+export const { getProductsAction, getPagingAction, getCategoryAction} = productReducer.actions
 
 export default productReducer.reducer
 
@@ -48,20 +54,9 @@ export default productReducer.reducer
 
 export const getDataProductApi = () => {
     return async (dispatch:DispatchType) => {
-        // const res = await axios({
-        //     url: 'https://shop.cyberlearn.vn/api/Produc',
-        //     method:'GET';
-        // })
+        
         const res = await httpNonAuth.get('/api/product');
 
-
-        //Sau khi lấy dữ liệu từ api về ta sẽ đưa lên reducer
-        //CÁCH 1:
-        // const action: PayloadAction<ProductModel[]> = {
-        //     type: 'productReducer/getProductsAction',
-        //     payload: res.data.content
-        // }
-        //CÁCH 2: 
         const action:PayloadAction<ProductModel[]> = getProductsAction(res.data.content);
         dispatch(action);
     }
@@ -73,6 +68,16 @@ export const getPagingApi = (pageIndex:number,pageSize:number ) => {
         const res = await httpNonAuth.get(`/api/Product/getpaging?pageIndex=${pageIndex}&pageSize=${pageSize}`);
 
         const action:PayloadAction<ProductModel[]> = getPagingAction(res.data.content.items);
+        dispatch(action);
+    }
+}
+
+export const getProductByCategoryApi = (categoryId:string) => {
+    return async (dispatch:DispatchType) => {
+
+        const res = await httpNonAuth.get(`/api/Product/getProductByCategory?categoryId=${categoryId}`);
+
+        const action:PayloadAction<ProductModel[]> = getPagingAction(res.data.content);
         dispatch(action);
     }
 }

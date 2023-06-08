@@ -19,6 +19,7 @@ import ResponsiveItem from "./Templates/ResponsiveItem";
 import Home from "./Pages/Home/Home";
 import HomeMobile from "./Pages/Home/HomeMobile";
 import Detail from "./Pages/Detail/Detail";
+import Category from "./Components/Header/Category/Category";
 
 export const history: any = createBrowserHistory();
 
@@ -32,6 +33,7 @@ root.render(
       <Routes>
         <Route path="" element={<HomeTemplate />}>
           <Route index element={<ResponsiveItem component={Home} tabletComponent={HomeMobile} />}></Route>
+          <Route path="category" element={<Category />}></Route>
           <Route path="detail">
             <Route path=':id' element={<Detail />}></Route>
           </Route>
