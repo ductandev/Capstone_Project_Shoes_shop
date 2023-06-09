@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import Product from "../../Components/Product/Product";
+import ProductCol3 from "../../Components/Product/ProductCol3";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../../Redux/configStore";
 import { ProductModel, getDataProductApi, getPagingApi } from "../../Redux/reducers/productReducer";
 
-import { Col, Row, Space } from "antd";
+import { Col, Row } from "antd";
 import styles from "./home.module.css";
 
 //Owl Carousel Libraries and Module
@@ -82,7 +82,7 @@ export default function Home({ }: Props) {
     const renderProducts = (): JSX.Element[] => {
         return arrPaging.map((item: ProductModel, index) => {
             return <Col xs={24} md={12} lg={8} xl={6} key={item.id}>
-                <Product product={item} />
+                <ProductCol3 product={item} />
             </Col>
         })
     }

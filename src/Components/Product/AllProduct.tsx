@@ -1,4 +1,4 @@
-import styles from "./AllProduct.module.css";
+import styles from "./allProduct.module.css";
 
 import React from 'react'
 import { NavLink } from 'react-router-dom'
