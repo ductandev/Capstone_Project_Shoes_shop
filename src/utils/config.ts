@@ -7,7 +7,7 @@ export const TOKEN = "accessToken";
 export const USER_LOGIN = "userLogin";
 export const TOKEN_CYBERSOFT = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA0MyIsIkhldEhhblN0cmluZyI6IjI0LzEyLzIwMjMiLCJIZXRIYW5UaW1lIjoiMTcwMzM3NjAwMDAwMCIsIm5iZiI6MTY2OTQ4MjAwMCwiZXhwIjoxNzAzNTIzNjAwfQ.epz5zMExyUD0sNaBnruLp5Jopf0DTxVeelbNz1VtsJI`;
 
-export const { getStoreJson, setStoreJson, getStore, setStore } = {
+export const { getStoreJson, setStoreJson, getStore, setStore, clearStorage } = {
   getStoreJson: (name: string): any => {
     if (localStorage.getItem(name)) {
       const strResult: string | null | any = localStorage.getItem(name);
@@ -24,6 +24,9 @@ export const { getStoreJson, setStoreJson, getStore, setStore } = {
   },
   setStore: (name: string, data: string): void => {
     localStorage.setItem(name, data);
+  },
+  clearStorage: (name: string) => {
+    localStorage.removeItem(name);
   },
 };
 
