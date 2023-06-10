@@ -101,7 +101,7 @@ export default function HomeMobile({ }: Props) {
 
             <h3 className={styles.headline}>TRENDING</h3>
             <div >
-            <Row gutter={[24,24]}>
+                <Row gutter={[24, 24]}>
                     {renderProducts()}
                 </Row>
             </div>

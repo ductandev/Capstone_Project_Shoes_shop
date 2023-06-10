@@ -24,6 +24,7 @@ export default function HeaderMobile({}: Props) {
   const onClose = () => {
     setOpen(false);
   };
+
   return (
     <div>
       <Row className={styles.topHeader} align="middle">

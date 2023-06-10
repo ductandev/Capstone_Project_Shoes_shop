@@ -1,12 +1,10 @@
-// tsrfc
+import { NavLink } from "react-router-dom";
 import { Col, Row, Input, Space, Carousel } from "antd";
+import { HeartOutlined, ShoppingOutlined } from "@ant-design/icons";
 import styles from "./header.module.css";
 
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { HeartOutlined, ShoppingOutlined } from "@ant-design/icons";
-
 type Props = {};
+
 const { Search } = Input;
 
 const onSearch = (value: string) => console.log(value);
