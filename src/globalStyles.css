@@ -15,3 +15,11 @@
 .owl-prev span,.owl-next span{
     font-size: 30px;
 }
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: rgb(168, 168, 168);
+}

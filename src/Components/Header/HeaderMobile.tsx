@@ -28,11 +28,9 @@ export default function HeaderMobile({ }: Props) {
     setOpen(false);
   };
 
-
-  // Get State
+// Get State
   const { } = useSelector((state: RootState) => state.productReducer);
   const dispatch: DispatchType = useDispatch();
-
   return (
 
 
