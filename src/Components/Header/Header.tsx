@@ -4,8 +4,12 @@ import { HeartOutlined, ShoppingOutlined } from "@ant-design/icons";
 import styles from "./header.module.css";
 import { DispatchType, RootState } from "../../Redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategoryNameAction, getProductByCategoryApi } from "../../Redux/reducers/productReducer";
-import { string } from "yargs";
+
+import { USER_LOGIN, clearStorage } from "../../utils/config";
+import {
+  getCategoryNameAction,
+  getProductByCategoryApi,
+} from "../../Redux/reducers/productReducer";
 
 type Props = {};
 
@@ -13,20 +17,57 @@ const { Search } = Input;
 
 const onSearch = (value: string) => console.log(value);
 
-export default function Header({ }: Props) {
+export default function Header({}: Props) {
+  const { userLogin } = useSelector((state: RootState) => state.userReducer);
+
+  const renderLoginLink = () => {
+    // console.log(userLogin);
+
+    if (typeof userLogin !== "undefined") {
+      console.log("đã login");
+
+      return (
+        <>
+          <button className={styles.buttonJoinUs}>
+            <NavLink className="nav-link" to="/profile">
+              Profile
+            </NavLink>
+          </button>
+          <button
+            className={styles.buttonSignIn}
+            onClick={() => {
+              clearStorage(USER_LOGIN);
+              window.location.reload(); //f5
+            }}
+          >
+            <NavLink className="nav-link" to="/">
+              Sign Out
+            </NavLink>
+          </button>
+        </>
+      );
+    } else {
+      console.log("chưa login");
+      return (
+        <button className={styles.buttonSignIn}>
+          <NavLink className="nav-link" to="/login">
+            Sign In
+          </NavLink>
+        </button>
+      );
+    }
+  };
 
   // Get State
-  const { } = useSelector((state: RootState) => state.productReducer);
+  // const {} = useSelector((state: RootState) => state.productReducer);
   const dispatch: DispatchType = useDispatch();
 
-
-  const renderCategoryProducts = (item:string) =>{
+  const renderCategoryProducts = (item: string) => {
     const action = getProductByCategoryApi(item);
     const actionGetNameCategory = getCategoryNameAction(item);
-    dispatch(action)
-    dispatch(actionGetNameCategory)
-  }
-
+    dispatch(action);
+    dispatch(actionGetNameCategory);
+  };
 
   return (
     <div>
@@ -52,11 +93,7 @@ export default function Header({ }: Props) {
                 Join Us
               </NavLink>
             </button>
-            <button className={styles.buttonSignIn}>
-              <NavLink className="nav-link" to="/login">
-                Log in
-              </NavLink>
-            </button>
+            {renderLoginLink()}
           </Row>
         </Col>
       </Row>
@@ -75,37 +112,72 @@ export default function Header({ }: Props) {
           <Row justify="center">
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
-                <button className={styles.buttonMainNav} onClick={() => {
-                  {renderCategoryProducts('women')}
-                }}>Woman</button>
+                <button
+                  className={styles.buttonMainNav}
+                  onClick={() => {
+                    {
+                      renderCategoryProducts("women");
+                    }
+                  }}
+                >
+                  Woman
+                </button>
               </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
-                <button className={styles.buttonMainNav} onClick={() => {
-                  {renderCategoryProducts('men')}
-                }}>Men</button>
+                <button
+                  className={styles.buttonMainNav}
+                  onClick={() => {
+                    {
+                      renderCategoryProducts("men");
+                    }
+                  }}
+                >
+                  Men
+                </button>
               </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
-                <button className={styles.buttonMainNav} onClick={() => {
-                  {renderCategoryProducts('adidas')}
-                }}>Adidas</button>
+                <button
+                  className={styles.buttonMainNav}
+                  onClick={() => {
+                    {
+                      renderCategoryProducts("adidas");
+                    }
+                  }}
+                >
+                  Adidas
+                </button>
               </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
-                <button className={styles.buttonMainNav} onClick={() => {
-                  {renderCategoryProducts('nike')}
-                }}>Nike</button>
+                <button
+                  className={styles.buttonMainNav}
+                  onClick={() => {
+                    {
+                      renderCategoryProducts("nike");
+                    }
+                  }}
+                >
+                  Nike
+                </button>
               </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
-                <button className={styles.buttonMainNav} onClick={() => {
-                  {renderCategoryProducts('vans_converse')}
-                }}>Vans</button>
+                <button
+                  className={styles.buttonMainNav}
+                  onClick={() => {
+                    {
+                      renderCategoryProducts("vans_converse");
+                    }
+                  }}
+                >
+                  Vans
+                </button>
               </NavLink>
             </Col>
           </Row>{" "}
