@@ -1,12 +1,12 @@
 // tsrfc
 import React from 'react'
 import { useEffect } from "react";
-import { DispatchType, RootState } from '../../../Redux/configStore';
+import { DispatchType, RootState } from '../../Redux/configStore';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './category.module.css'
 import { Col, Row } from "antd";
-import { ProductModel, getProductByCategoryApi } from "../../../Redux/reducers/productReducer";
-import ProductCol4 from '../../Product/ProductCol4';
+import { ProductModel, getProductByCategoryApi } from "../../Redux/reducers/productReducer";
+import ProductCol4 from '../../Components/Product/ProductCol4';
 
 type Props = {
 }
@@ -14,7 +14,7 @@ type Props = {
 export default function Category({ }: Props) {
 
   // Get State
-  const { arrCategory } = useSelector((state: RootState) => state.productReducer);
+  const { arrCategory, categoryName } = useSelector((state: RootState) => state.productReducer);
   const dispatch: DispatchType = useDispatch();
 
   // GỌI API getProductByCategory
@@ -40,7 +40,7 @@ export default function Category({ }: Props) {
 
   return (
     <div>
-      <h3 className={styles.headlineTitle}>TRENDING</h3>
+      <h3 className={styles.headlineTitle}>{categoryName}</h3>
       <div className={styles.mx}>
         <Row gutter={[24, 24]}>
           {renderProducts()}

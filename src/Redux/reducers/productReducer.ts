@@ -53,12 +53,14 @@ export interface ProductState {
     arrProduct: ProductModel[]
     arrPaging: ProductModel[]
     arrCategory: ProductModel[]
+    categoryName: string
     productDetail: ProductDetailModel | null
 }
 const initialState: ProductState = {
     arrProduct: [],
     arrPaging: [],
     arrCategory: [],
+    categoryName: "",
     productDetail: null,
 
 }
@@ -72,6 +74,9 @@ const productReducer = createSlice({
         getPagingAction: (state: ProductState, action: PayloadAction<ProductModel[]>) => {
             state.arrPaging = action.payload;
         },
+        getCategoryNameAction:(state: ProductState, action: PayloadAction<string>) => {
+            state.categoryName = action.payload;
+        },
         getCategoryAction: (state: ProductState, action: PayloadAction<ProductModel[]>) => {
             state.arrCategory = action.payload;
         },
@@ -81,7 +86,7 @@ const productReducer = createSlice({
     }
 });
 
-export const { getProductsAction, getPagingAction, getCategoryAction, getProductByIdAction } = productReducer.actions
+export const { getProductsAction, getPagingAction, getCategoryAction, getProductByIdAction, getCategoryNameAction } = productReducer.actions
 
 export default productReducer.reducer
 

@@ -1,10 +1,15 @@
 import ReactDOM from "react-dom/client";
 
-import { unstable_HistoryRouter as HistoryRouter, Routes, Route } from "react-router-dom";
+import {
+  unstable_HistoryRouter as HistoryRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 import { createBrowserHistory } from "history";
 import HomeTemplate from "./Templates/HomeTemplate";
 import Login from "./Pages/Login/Login";
+import Profile from "./Pages/Profile/Profile";
 import Register from "./Pages/Register/Register";
 import Cart from "./Pages/Cart/Cart";
 import Favourite from "./Pages/Favourite/Favourite";
@@ -17,7 +22,7 @@ import ResponsiveItem from "./Templates/ResponsiveItem";
 import Home from "./Pages/Home/Home";
 import HomeMobile from "./Pages/Home/HomeMobile";
 import Detail from "./Pages/Detail/Detail";
-import Category from "./Components/Header/Category/Category";
+import Category from "./Pages/Category/Category";
 import DetailMobile from "./Pages/Detail/DetailMobile";
 
 export const history: any = createBrowserHistory();
@@ -31,12 +36,18 @@ root.render(
     <HistoryRouter history={history}>
       <Routes>
         <Route path="" element={<HomeTemplate />}>
-          <Route index element={<ResponsiveItem component={Home} tabletComponent={HomeMobile} />}></Route>
+          <Route
+            index
+            element={
+              <ResponsiveItem component={Home} tabletComponent={HomeMobile} />
+            }
+          ></Route>
           <Route path="category" element={<Category />}></Route>
           <Route path="detail">
-            <Route path=':id' element={<ResponsiveItem component={Detail} largeTableComponent={DetailMobile}/>}></Route>
+  <Route path=':id' element={<ResponsiveItem component={Detail} largeTableComponent={DetailMobile}/>}></Route>
           </Route>
           <Route path="login" element={<Login />}></Route>
+          <Route path="profile" element={<Profile />}></Route>
           <Route path="register" element={<Register />} />
           <Route path="cart" element={<Cart />} />
           <Route path="shoestore" element={<ShoeStore />} />
