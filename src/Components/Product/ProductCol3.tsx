@@ -1,5 +1,5 @@
 // tsrfc
-import styles from "./product.module.css";
+import styles from "./productCol3.module.css";
 
 import React from 'react'
 import { NavLink } from 'react-router-dom'
@@ -10,14 +10,9 @@ type Props = {
 }
 
 
-export default function Product({ product }: Props) {
+export default function ProductCol3({ product }: Props) {
 
-
-    const categories = JSON.parse(product.categories);
-    console.log(categories[0].id)
-    console.log(categories)
-    
-
+    // const categories = JSON.parse(product.categories);
 
     return (
         <div>

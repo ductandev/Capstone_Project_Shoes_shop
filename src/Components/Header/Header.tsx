@@ -2,6 +2,9 @@ import { NavLink } from "react-router-dom";
 import { Col, Row, Input, Space, Carousel } from "antd";
 import { HeartOutlined, ShoppingOutlined } from "@ant-design/icons";
 import styles from "./header.module.css";
+import { DispatchType, RootState } from "../../Redux/configStore";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductByCategoryApi } from "../../Redux/reducers/productReducer";
 
 type Props = {};
 
@@ -9,7 +12,13 @@ const { Search } = Input;
 
 const onSearch = (value: string) => console.log(value);
 
-export default function Header({}: Props) {
+export default function Header({ }: Props) {
+
+  // Get State
+  const {} = useSelector((state: RootState) => state.productReducer);
+  const dispatch: DispatchType = useDispatch();
+
+
   return (
     <div>
       <Row className={styles.topHeader} align="middle">
@@ -56,19 +65,44 @@ export default function Header({}: Props) {
         <Col span={12}>
           <Row justify="center">
             <Col span={4} className={styles.colMainNav}>
-              <button className={styles.buttonMainNav}>Woman</button>
+              <NavLink to={`/category`}>
+                <button className={styles.buttonMainNav} onClick={() => {
+                  const action = getProductByCategoryApi('women')
+                  dispatch(action)
+                }}>Woman</button>
+              </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
-              <button className={styles.buttonMainNav}>Men</button>
+              <NavLink to={`/category`}>
+                <button className={styles.buttonMainNav} onClick={() => {
+                  const action = getProductByCategoryApi('men')
+                  dispatch(action)
+                }}>Men</button>
+              </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
-              <button className={styles.buttonMainNav}>Adidas</button>
+              <NavLink to={`/category`}>
+                <button className={styles.buttonMainNav} onClick={() => {
+                  const action = getProductByCategoryApi('adidas')
+                  dispatch(action)
+                }}>Adidas</button>
+              </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
-              <button className={styles.buttonMainNav}>Nike</button>
+              <NavLink to={`/category`}>
+                <button className={styles.buttonMainNav} onClick={() => {
+                  const action = getProductByCategoryApi('nike')
+                  dispatch(action)
+                }}>Nike</button>
+              </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
-              <button className={styles.buttonMainNav}>Vans</button>
+              <NavLink to={`/category`}>
+                <button className={styles.buttonMainNav} onClick={() => {
+                  const action = getProductByCategoryApi('vans_converse')
+                  dispatch(action)
+                }}>Vans</button>
+              </NavLink>
             </Col>
           </Row>{" "}
         </Col>

@@ -2,7 +2,7 @@
 import { Button, Col, Row } from 'antd'
 import React, { useEffect } from 'react'
 
-import styles from './detail.module.css'
+import styles from './detailMobile.module.css'
 import { RelatedProduct, getProductDetailApi } from '../../Redux/reducers/productReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { DispatchType, RootState } from '../../Redux/configStore'
@@ -19,7 +19,7 @@ type Props = {
 
 }
 
-export default function Detail({ }: Props) {
+export default function DetailMobile({ }: Props) {
   //Owl Carousel Settings
   const options = {
     margin: 30,
@@ -85,11 +85,11 @@ export default function Detail({ }: Props) {
       <div className={styles.mt}>
         <div>
           <Row justify="space-evenly" gutter={[32, 32]}>
-            <Col xs={24} md={10} lg={10} xl={10} >
+            <Col xs={22} md={12} lg={10} xl={10} >
               <img className={styles.bgImg} src={productDetail?.image} alt="..." width={535} style={{ objectFit: 'cover' }} />
             </Col>
 
-            <Col className={styles.padding} xs={24} md={10} lg={10} xl={8} >
+            <Col className={styles.padding} xs={24} md={12} lg={10} xl={8} >
               <h1 className={styles.poductName}>{productDetail?.name}</h1>
               <p>{productDetail?.description}</p>
               <p className={styles.price}>{productDetail?.price} $</p>

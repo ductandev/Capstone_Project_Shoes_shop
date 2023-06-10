@@ -1,4 +1,4 @@
-import styles from "./AllProduct.module.css";
+import styles from "./allProduct.module.css";
 
 import React from 'react'
 import { NavLink } from 'react-router-dom'
@@ -11,7 +11,6 @@ type Props = {
 export default function AllProduct ({product}: Props) {
 
     const categories = JSON.parse(product.categories);
-    console.log(categories[0].id)
 
     return (
         <div>
