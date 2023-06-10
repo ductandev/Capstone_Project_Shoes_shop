@@ -24,7 +24,7 @@ import ResponsiveItem from "./Templates/ResponsiveItem";
 import Home from "./Pages/Home/Home";
 import HomeMobile from "./Pages/Home/HomeMobile";
 import Detail from "./Pages/Detail/Detail";
-import Category from "./Components/Header/Category/Category";
+import Category from "./Pages/Category/Category";
 import DetailMobile from "./Pages/Detail/DetailMobile";
 
 export const history: any = createBrowserHistory();
