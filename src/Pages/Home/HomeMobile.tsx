@@ -3,8 +3,7 @@ import Product from "../../Components/Product/ProductCol3";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../../Redux/configStore";
 import { ProductModel, getDataProductApi, getPagingApi } from "../../Redux/reducers/productReducer";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import { Col, Row } from "antd";
 import styles from "./homeMobile.module.css";
 
