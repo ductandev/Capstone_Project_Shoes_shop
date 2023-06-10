@@ -5,7 +5,6 @@ import styles from "./header.module.css";
 import { DispatchType, RootState } from "../../Redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryNameAction, getProductByCategoryApi } from "../../Redux/reducers/productReducer";
-import { string } from "yargs";
 
 type Props = {};
 

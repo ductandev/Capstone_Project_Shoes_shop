@@ -66,7 +66,7 @@ export default function Home({ }: Props) {
     // Call API lần đầu tiên trước khi render.
     useEffect(() => {
         getDataProductList();
-        getPaging(1, 8);
+        getPaging(1, 12);
     }, []);
 
 
