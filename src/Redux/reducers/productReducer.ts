@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { DispatchType } from '../configStore';
-import axios from 'axios';
 import { httpNonAuth } from '../../utils/config';
 
 
@@ -55,6 +54,7 @@ export interface ProductState {
     arrCategory: ProductModel[]
     categoryName: string
     productDetail: ProductDetailModel | null
+    arrProductSearch: ProductModel[]
 }
 const initialState: ProductState = {
     arrProduct: [],
@@ -62,6 +62,7 @@ const initialState: ProductState = {
     arrCategory: [],
     categoryName: "",
     productDetail: null,
+    arrProductSearch: []
 
 }
 const productReducer = createSlice({
@@ -74,7 +75,7 @@ const productReducer = createSlice({
         getPagingAction: (state: ProductState, action: PayloadAction<ProductModel[]>) => {
             state.arrPaging = action.payload;
         },
-        getCategoryNameAction:(state: ProductState, action: PayloadAction<string>) => {
+        getCategoryNameAction: (state: ProductState, action: PayloadAction<string>) => {
             state.categoryName = action.payload;
         },
         getCategoryAction: (state: ProductState, action: PayloadAction<ProductModel[]>) => {
@@ -83,10 +84,13 @@ const productReducer = createSlice({
         getProductByIdAction: (state: ProductState, action: PayloadAction<ProductDetailModel>) => {
             state.productDetail = action.payload;
         },
+        getSearchProductAction: (state: ProductState, action: PayloadAction<ProductModel[]>) => {
+            state.arrProductSearch = action.payload;
+        },
     }
 });
 
-export const { getProductsAction, getPagingAction, getCategoryAction, getProductByIdAction, getCategoryNameAction } = productReducer.actions
+export const { getProductsAction, getPagingAction, getCategoryAction, getProductByIdAction, getCategoryNameAction, getSearchProductAction } = productReducer.actions
 
 export default productReducer.reducer
 
@@ -130,6 +134,17 @@ export const getProductDetailApi = (id: string) => {
         const res = await httpNonAuth.get(`/api/Product/getbyid?id=${id}`);
 
         const action: PayloadAction<ProductDetailModel> = getProductByIdAction(res.data.content);
+        dispatch(action);
+    }
+}
+
+export const getProductByKeyWordApi = (keyword: string) => {
+    return async (dispatch: DispatchType) => {
+
+        const res = await httpNonAuth.get(`/api/Product?keyword=${keyword}`);
+
+        console.log("🚀 ~ file: productReducer.ts:147 ~ return ~ res:", res.data.content)
+        const action: PayloadAction<ProductModel[]> = getSearchProductAction(res.data.content);
         dispatch(action);
     }
 }

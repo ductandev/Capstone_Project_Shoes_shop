@@ -25,6 +25,7 @@ import HomeMobile from "./Pages/Home/HomeMobile";
 import Detail from "./Pages/Detail/Detail";
 import Category from "./Pages/Category/Category";
 import DetailMobile from "./Pages/Detail/DetailMobile";
+import Search from "./Pages/Search/Search";
 
 export const history: any = createBrowserHistory();
 
@@ -66,6 +67,7 @@ root.render(
             }
           ></Route>
           <Route path="register" element={<Register />} />
+          <Route path="search" element={<Search />} />
           <Route path="cart" element={<Cart />} />
           <Route path="shoestore" element={<ShoeStore />} />
           <Route path="favourite" element={<Favourite />} />
