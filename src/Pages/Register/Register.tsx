@@ -1,4 +1,4 @@
-import { Radio, Row, Input, Col } from "antd";
+import { Row, Input, Col } from "antd";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { DispatchType } from "../../Redux/configStore";
@@ -19,6 +19,7 @@ export interface UserRegisterFrm {
   phone: string;
 }
 
+// eslint-disable-next-line no-empty-pattern
 export default function Register({}: Props) {
   const navigate = useNavigate();
 

@@ -15,6 +15,7 @@ export interface UserLoginFrm {
   password: string;
 }
 
+// eslint-disable-next-line no-empty-pattern
 export default function Login({}: Props) {
   // const navigate = useNavigate();
   // const [passwordVisible, setPasswordVisible] = React.useState(false);

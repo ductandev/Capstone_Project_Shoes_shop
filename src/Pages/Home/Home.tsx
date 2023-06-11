@@ -19,6 +19,7 @@ import AllProduct from "../../Components/Product/AllProduct";
 
 type Props = {};
 
+// eslint-disable-next-line no-empty-pattern
 export default function Home({}: Props) {
   //Owl Carousel Settings
   const options = {
@@ -72,6 +73,7 @@ export default function Home({}: Props) {
   useEffect(() => {
     getDataProductList();
     getPaging(1, 12);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderAllProducts = (): JSX.Element[] => {
