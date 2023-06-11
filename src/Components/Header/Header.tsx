@@ -14,6 +14,7 @@ import { USER_LOGIN, clearStorage } from "../../utils/config";
 import {
   getCategoryNameAction,
   getProductByCategoryApi,
+  getProductByKeyWordApi,
 } from "../../Redux/reducers/productReducer";
 
 const items: MenuProps["items"] = [
@@ -48,8 +49,6 @@ const items: MenuProps["items"] = [
 type Props = {};
 
 const { Search } = Input;
-
-const onSearch = (value: string) => console.log(value);
 
 // eslint-disable-next-line no-empty-pattern
 export default function Header({}: Props) {
@@ -118,6 +117,15 @@ export default function Header({}: Props) {
     const actionGetNameCategory = getCategoryNameAction(item);
     dispatch(action);
     dispatch(actionGetNameCategory);
+  };
+
+  const renderSearchProducts = (value: string) => {
+    const action = getProductByKeyWordApi(value);
+    dispatch(action);
+  };
+
+  const onSearch = (value: string) => {
+    renderSearchProducts(value);
   };
 
   return (
@@ -233,7 +241,9 @@ export default function Header({}: Props) {
           <Row justify="end">
             <Col span={16}>
               <Space align="center" className={styles.spaceSearch}>
-                <Search placeholder="Search" allowClear onSearch={onSearch} />
+                <NavLink to={`/search`}>
+                  <Search placeholder="Search" allowClear onSearch={onSearch} />
+                </NavLink>
               </Space>
             </Col>
             {renderFavourite()}
