@@ -7,6 +7,7 @@ import { Outlet } from "react-router-dom";
 
 type Props = {};
 
+// eslint-disable-next-line no-empty-pattern
 const HomeTemplate: React.FC = ({}: Props): JSX.Element => {
   return (
     <>

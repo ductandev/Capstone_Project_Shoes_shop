@@ -4,6 +4,7 @@ import { RootState } from "../../Redux/configStore";
 
 type Props = {};
 
+// eslint-disable-next-line no-empty-pattern
 export default function Loading({}: Props) {
   const { isLoading } = useSelector((state: RootState) => state.userReducer);
 

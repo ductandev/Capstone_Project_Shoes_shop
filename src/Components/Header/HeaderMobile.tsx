@@ -72,6 +72,7 @@ const { Search } = Input;
 
 const onSearch = (value: string) => console.log(value);
 
+// eslint-disable-next-line no-empty-pattern
 export default function HeaderMobile({}: Props) {
   const { userLogin } = useSelector((state: RootState) => state.userReducer);
 
@@ -131,6 +132,7 @@ export default function HeaderMobile({}: Props) {
   };
 
   // Get State
+  // eslint-disable-next-line no-empty-pattern
   const {} = useSelector((state: RootState) => state.productReducer);
   const dispatch: DispatchType = useDispatch();
   return (

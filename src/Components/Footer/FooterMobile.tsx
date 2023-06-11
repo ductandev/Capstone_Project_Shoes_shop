@@ -1,12 +1,10 @@
 // tsrafce
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const FooterMobile = (props: Props) => {
-  return (
-    <div>FooterMobile</div>
-  )
-}
+  return <div>FooterMobile</div>;
+};
 
-export default FooterMobile
+export default FooterMobile;

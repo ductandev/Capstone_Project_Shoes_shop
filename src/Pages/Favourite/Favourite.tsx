@@ -41,6 +41,7 @@ const Favourite: React.FC = () => {
 
   useEffect(() => {
     getFavouriteApi();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [searchText, setSearchText] = useState("");

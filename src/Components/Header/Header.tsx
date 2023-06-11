@@ -51,6 +51,7 @@ const { Search } = Input;
 
 const onSearch = (value: string) => console.log(value);
 
+// eslint-disable-next-line no-empty-pattern
 export default function Header({}: Props) {
   const { userLogin } = useSelector((state: RootState) => state.userReducer);
 

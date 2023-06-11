@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProfileActionApi } from "../../Redux/reducers/userReducer";
 import { RootState, AppDispatch } from "../../Redux/configStore";
 import { Input, Select, Row, Col } from "antd";
-import OrdersHistory from "../../Components/OrdersHistory/OrdersHistory";
 import styles from "./profileTablet.module.css";
 import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
 
 type Props = {};
 
+// eslint-disable-next-line no-empty-pattern
 export default function Profile({}: Props) {
   const dispatch: AppDispatch = useDispatch();
   const { userProfile } = useSelector((state: RootState) => state.userReducer);
@@ -21,6 +21,7 @@ export default function Profile({}: Props) {
 
   useEffect(() => {
     getProfileApi();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

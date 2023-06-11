@@ -1,17 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-type Props = {}
+type Props = {};
 
-type State = {}
+type State = {};
 
 class Footer extends Component<Props, State> {
-  state = {}
+  state = {};
 
   render() {
-    return (
-      <div>Footer</div>
-    )
+    return <div>Footer</div>;
   }
 }
 
-export default Footer
+export default Footer;
