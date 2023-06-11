@@ -1,0 +1,10 @@
+{
+    "productsFavorite": [
+        {
+            "id": 1,
+            "name": "Adidas Prophere",
+            "image": "https://shop.cyberlearn.vn/images/adidas-prophere.png"
+        }
+    ],
+    "email": "nvthanh.fedev.080112@gmail.com"
+}

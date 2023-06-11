@@ -4,7 +4,7 @@ import { UserLoginFrm } from "../../Pages/Login/Login";
 import { UserRegisterFrm } from "../../Pages/Register/Register";
 import { history } from "../../index";
 import { RootState } from "../../Redux/configStore";
-
+import { AxiosRequestConfig } from 'axios';
 export interface UserLoginApi {
   email: string;
   password: string;
@@ -23,16 +23,24 @@ export interface UserProfile {
   avatar: string;
 }
 
+export interface ProductFavourite {
+  id: number;
+  name: string;
+  image: string;
+}
+
 export interface UserState {
   userLogin: UserLoginApi | undefined;
   isLoading: boolean;
   userProfile: UserProfile | undefined;
+  productFavourite: ProductFavourite[] | undefined;
 }
 
 const initialState: UserState = {
   userLogin: getStoreJson(USER_LOGIN),
   isLoading: false,
   userProfile: undefined,
+  productFavourite: undefined
 };
 
 export const loginAsyncAction = createAsyncThunk(
@@ -69,20 +77,50 @@ export const getProfileActionApi = createAsyncThunk(
     try {
       const state = getState() as RootState; // Thêm kiểu RootState cho state
       const accessToken = state.userReducer.userLogin?.accessToken; // Sử dụng optional chaining để tránh lỗi khi userLogin là undefined
+      // console.log("🚀 ~ file: userReducer.ts:72 ~ accessToken:", accessToken)
       if (accessToken) {
         const res = await http.post(`/api/Users/getProfile`, { accessToken });
-        console.log("🚀 ~ file: userReducer.ts:107 ~ res.data.content:", res.data.content)
         return res.data.content;
       } else {
-        // Xử lý khi accessToken không tồn tại
       }
-
     } catch (err) {
-      // Xử lý lỗi tại đây
       throw err;
     }
   }
 );
+
+
+
+export const getFavouriteActionApi = createAsyncThunk(
+  "getFavouriteActionApi",
+  async (_, { getState }) => {
+    try {
+      console.log("call api");
+
+      const state = getState() as RootState;
+      const accessToken = state.userReducer.userLogin?.accessToken;
+      if (accessToken) {
+        const config: AxiosRequestConfig = {
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          }
+        };
+        console.log("🚀 ~ file: userReducer.ts:115 ~ config:", config)
+
+        const res = await http.get(`/api/Users/getproductfavorite`, config);
+        console.log("🚀 ~ file: userReducer.ts:118 ~ res:", res.data.content.productsFavorite)
+        return res.data.content.productsFavorite;
+
+      } else {
+        // Xử lý trường hợp không có accessToken
+      }
+
+    } catch (err) {
+      throw err;
+    }
+  }
+);
+
 
 const userReducer = createSlice({
   name: "userReducer",
@@ -103,8 +141,13 @@ const userReducer = createSlice({
       })
       .addCase(getProfileActionApi.fulfilled, (state, action) => {
         state.userProfile = action.payload;
+      })
+      .addCase(getFavouriteActionApi.fulfilled, (state, action) => {
+        state.productFavourite = action.payload;
       });
   },
 });
+
+
 
 export default userReducer.reducer;
