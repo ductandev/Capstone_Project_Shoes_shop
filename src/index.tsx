@@ -61,6 +61,7 @@ root.render(
             }
           ></Route>
           <Route path="register" element={<Register />} />
+          <Route path="search" element={<Search />} />
           <Route path="cart" element={<ResponsiveItem component={Cart} tabletComponent={CartMobile} />}></Route> 
           <Route path="payment" element={<Payment />} />
           <Route path="shoestore" element={<ShoeStore />} />
