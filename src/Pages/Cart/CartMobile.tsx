@@ -2,7 +2,7 @@
 import React from "react";
 import { Button, Row, Space, Table } from 'antd';
 
-import styles from './cart.module.css'
+import styles from './cartMobile.module.css'
 import { DispatchType, RootState } from "../../Redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 import { ColumnsType } from "antd/es/table";
@@ -19,7 +19,7 @@ interface DataType {
 
 type Props = {};
 
-export default function Cart({ }: Props) {
+export default function CartMobile({ }: Props) {
 
   // Get State
   const { arrProductCart } = useSelector((state: RootState) => state.cartReducer);
@@ -41,6 +41,7 @@ export default function Cart({ }: Props) {
       title: 'Image',
       dataIndex: 'image',
       key: 'image',
+      // fixed: 'left',
       render: (text) => <img className={styles.img} src={text} width={60} alt="..." />,
     },
     {
@@ -115,7 +116,7 @@ export default function Cart({ }: Props) {
         border: "1px solid #cccccc",
         borderRadius: "10px",
       }}>
-        <Table size="small" columns={columns} dataSource={data} />
+        <Table size="small" columns={columns} dataSource={data} scroll={{ x: 800 }}/>
         <Row justify="space-between">
           <div>
             <p className={styles.totalBill}>

@@ -7,7 +7,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import styles from "./headerMobile.styles.module.css";
-import { getProductByCategoryApi } from "../../Redux/reducers/productReducer";
+import { getCategoryNameAction, getProductByCategoryApi } from "../../Redux/reducers/productReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../../Redux/configStore";
 
@@ -28,9 +28,19 @@ export default function HeaderMobile({ }: Props) {
     setOpen(false);
   };
 
-// Get State
-  const { } = useSelector((state: RootState) => state.productReducer);
+  // Get State
+  const { arrProductCart } = useSelector((state: RootState) => state.cartReducer);
   const dispatch: DispatchType = useDispatch();
+
+
+  const renderCategoryProducts = (item: string) => {
+    const action = getProductByCategoryApi(item);
+    const actionGetNameCategory = getCategoryNameAction(item);
+    dispatch(action)
+    dispatch(actionGetNameCategory)
+  }
+
+
   return (
 
 
@@ -50,6 +60,9 @@ export default function HeaderMobile({ }: Props) {
             <button className={styles.buttonIconNav}>
               <NavLink className="nav-link" to="/cart">
                 <ShoppingOutlined />
+                <span className={styles.cartNumber} style={{ visibility: "visible" }}>
+                  {arrProductCart.reduce((total, item) => total + item.quantity, 0)}
+                </span>
               </NavLink>
             </button>
 
@@ -87,17 +100,15 @@ export default function HeaderMobile({ }: Props) {
           <Col span={24} className={styles.colItemNav}>
             <NavLink to={`/category`}>
               <button className={styles.colButtonNav} onClick={() => {
-                const action = getProductByCategoryApi('women')
-                dispatch(action)
+                { renderCategoryProducts('women') }
               }}>Woman</button>
             </NavLink>
           </Col>
-          
+
           <Col span={24} className={styles.colItemNav}>
             <NavLink to={`/category`}>
               <button className={styles.colButtonNav} onClick={() => {
-                const action = getProductByCategoryApi('men')
-                dispatch(action)
+                { renderCategoryProducts('men') }
               }}>Men</button>
             </NavLink>
           </Col>
@@ -105,8 +116,7 @@ export default function HeaderMobile({ }: Props) {
           <Col span={24} className={styles.colItemNav}>
             <NavLink to={`/category`}>
               <button className={styles.colButtonNav} onClick={() => {
-                const action = getProductByCategoryApi('adidas')
-                dispatch(action)
+                { renderCategoryProducts('adidas') }
               }}>Adidas</button>
             </NavLink>
           </Col>
@@ -114,8 +124,7 @@ export default function HeaderMobile({ }: Props) {
           <Col span={24} className={styles.colItemNav}>
             <NavLink to={`/category`}>
               <button className={styles.colButtonNav} onClick={() => {
-                const action = getProductByCategoryApi('nike')
-                dispatch(action)
+                { renderCategoryProducts('nike') }
               }}>Nike</button>
             </NavLink>
           </Col>
@@ -123,8 +132,7 @@ export default function HeaderMobile({ }: Props) {
           <Col span={24} className={styles.colItemNav}>
             <NavLink to={`/category`}>
               <button className={styles.colButtonNav} onClick={() => {
-                const action = getProductByCategoryApi('vans_converse')
-                dispatch(action)
+                { renderCategoryProducts('vans_converse') }
               }}>Vans</button>
             </NavLink>
           </Col>

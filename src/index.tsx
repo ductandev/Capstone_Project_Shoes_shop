@@ -24,6 +24,8 @@ import HomeMobile from "./Pages/Home/HomeMobile";
 import Detail from "./Pages/Detail/Detail";
 import Category from "./Pages/Category/Category";
 import DetailMobile from "./Pages/Detail/DetailMobile";
+import Payment from "./Pages/Payment/Payment";
+import CartMobile from "./Pages/Cart/CartMobile";
 
 export const history: any = createBrowserHistory();
 
@@ -44,12 +46,13 @@ root.render(
           ></Route>
           <Route path="category" element={<Category />}></Route>
           <Route path="detail">
-  <Route path=':id' element={<ResponsiveItem component={Detail} largeTableComponent={DetailMobile}/>}></Route>
+            <Route path=':id' element={<ResponsiveItem component={Detail} largeTableComponent={DetailMobile} />}></Route>
           </Route>
           <Route path="login" element={<Login />}></Route>
           <Route path="profile" element={<Profile />}></Route>
           <Route path="register" element={<Register />} />
-          <Route path="cart" element={<Cart />} />
+          <Route path="cart" element={<ResponsiveItem component={Cart} tabletComponent={CartMobile} />}></Route> 
+          <Route path="payment" element={<Payment />} />
           <Route path="shoestore" element={<ShoeStore />} />
           <Route path="favourite" element={<Favourite />} />
         </Route>

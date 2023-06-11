@@ -101,6 +101,10 @@
   margin: 10px;
   border-radius: 50%;
   padding: 5px;
+  position: relative;
+}
+.userButton{
+  font-size: 22px;
 }
 
 .heartButton:hover,
@@ -109,6 +113,17 @@
 }
 .fontSizeShopping {
   font-size: 25px;
+}
+.cartNumber {
+  display: block;
+  position: absolute;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  font-size: 9px;
+  margin-top: 3.75px;
+  color: #111;
+  top: 12px;
 }
 
 .deliveryRow {

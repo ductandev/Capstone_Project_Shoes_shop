@@ -10,7 +10,7 @@
 }
 
 .buttonIconNav {
-  font-size: 20px;
+  font-size: 22px;
   width: 40px;
   height: 40px;
   font-weight: 500;
@@ -23,6 +23,7 @@
   margin: 10px 0px 0px 10px;
   border-radius: 50%;
   padding: 5px;
+  position: relative;
 }
 
 .buttonIconNav:hover {
@@ -64,4 +65,15 @@
   text-align: center;
   border: none;
   background-color: transparent;
+}
+.cartNumber {
+  display: block;
+  position: absolute;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  font-size: 9px;
+  margin-top: 3.75px;
+  color: #111;
+  top: 12px;
 }

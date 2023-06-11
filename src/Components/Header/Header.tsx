@@ -15,11 +15,11 @@ const onSearch = (value: string) => console.log(value);
 export default function Header({ }: Props) {
 
   // Get State
-  const { } = useSelector((state: RootState) => state.productReducer);
+  const { arrProductCart } = useSelector((state: RootState) => state.cartReducer);
   const dispatch: DispatchType = useDispatch();
 
 
-  const renderCategoryProducts = (item:string) =>{
+  const renderCategoryProducts = (item: string) => {
     const action = getProductByCategoryApi(item);
     const actionGetNameCategory = getCategoryNameAction(item);
     dispatch(action)
@@ -75,35 +75,35 @@ export default function Header({ }: Props) {
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
                 <button className={styles.buttonMainNav} onClick={() => {
-                  {renderCategoryProducts('women')}
+                  { renderCategoryProducts('women') }
                 }}>Woman</button>
               </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
                 <button className={styles.buttonMainNav} onClick={() => {
-                  {renderCategoryProducts('men')}
+                  { renderCategoryProducts('men') }
                 }}>Men</button>
               </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
                 <button className={styles.buttonMainNav} onClick={() => {
-                  {renderCategoryProducts('adidas')}
+                  { renderCategoryProducts('adidas') }
                 }}>Adidas</button>
               </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
                 <button className={styles.buttonMainNav} onClick={() => {
-                  {renderCategoryProducts('nike')}
+                  { renderCategoryProducts('nike') }
                 }}>Nike</button>
               </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
                 <button className={styles.buttonMainNav} onClick={() => {
-                  {renderCategoryProducts('vans_converse')}
+                  { renderCategoryProducts('vans_converse') }
                 }}>Vans</button>
               </NavLink>
             </Col>
@@ -128,6 +128,9 @@ export default function Header({ }: Props) {
               <button className={styles.userButton}>
                 <NavLink className="nav-link" to="/cart">
                   <ShoppingOutlined />
+                  <span className={styles.cartNumber} style={{ visibility: "visible" }}>
+                    {arrProductCart.reduce((total, item) => total + item.quantity, 0)}
+                  </span>
                 </NavLink>
               </button>
             </Col>
