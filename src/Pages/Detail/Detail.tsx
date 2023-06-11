@@ -13,6 +13,7 @@ import { useParams } from 'react-router-dom'
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import { getProductCartAction } from '../../Redux/reducers/cartReducer'
 
 
 type Props = {
@@ -100,7 +101,12 @@ export default function Detail({ }: Props) {
               <Row id='btnActive' gutter={[8, 8]}>
                 {renderButtonSize()}
               </Row>
-              <button className={styles.addToBag}>Add to Bag</button>
+              <button className={styles.addToBag} onClick={() => {
+                if (productDetail !== null) {
+                  const actionApi = getProductCartAction(productDetail);
+                  dispatch(actionApi);
+                }
+              }}>Add to Bag</button>
               <button className={styles.favourite}>
                 Favourite  &nbsp;
                 <i className="fa-sharp fa-regular fa-heart"></i>

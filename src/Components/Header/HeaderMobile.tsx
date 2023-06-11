@@ -9,7 +9,7 @@ import {
   HeartOutlined,
 } from "@ant-design/icons";
 import styles from "./headerMobile.styles.module.css";
-import { getProductByCategoryApi } from "../../Redux/reducers/productReducer";
+import { getCategoryNameAction, getProductByCategoryApi } from "../../Redux/reducers/productReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../../Redux/configStore";
 import { USER_LOGIN, clearStorage } from "../../utils/config";
@@ -132,9 +132,18 @@ export default function HeaderMobile({}: Props) {
   };
 
   // Get State
-  // eslint-disable-next-line no-empty-pattern
-  const {} = useSelector((state: RootState) => state.productReducer);
+  const { arrProductCart } = useSelector((state: RootState) => state.cartReducer);
   const dispatch: DispatchType = useDispatch();
+
+
+  const renderCategoryProducts = (item: string) => {
+    const action = getProductByCategoryApi(item);
+    const actionGetNameCategory = getCategoryNameAction(item);
+    dispatch(action)
+    dispatch(actionGetNameCategory)
+  }
+
+
   return (
     <div>
       <Row className={styles.topHeader} align="middle">
@@ -153,6 +162,9 @@ export default function HeaderMobile({}: Props) {
             <button className={styles.buttonIconNav}>
               <NavLink className="nav-link" to="/cart">
                 <ShoppingOutlined />
+                <span className={styles.cartNumber} style={{ visibility: "visible" }}>
+                  {arrProductCart.reduce((total, item) => total + item.quantity, 0)}
+                </span>
               </NavLink>
             </button>
             {renderLoginLink()}
@@ -183,57 +195,41 @@ export default function HeaderMobile({}: Props) {
         <Row justify="center">
           <Col span={24} className={styles.colItemNav}>
             <NavLink to={`/category`}>
-              <button
-                className={styles.colButtonNav}
-                onClick={() => {
-                  const action = getProductByCategoryApi("women");
-                  dispatch(action);
-                }}
-              >
-                Woman
-              </button>
+              <button className={styles.colButtonNav} onClick={() => {
+                { renderCategoryProducts('women') }
+              }}>Woman</button>
             </NavLink>
           </Col>
 
           <Col span={24} className={styles.colItemNav}>
             <NavLink to={`/category`}>
-              <button
-                className={styles.colButtonNav}
-                onClick={() => {
-                  const action = getProductByCategoryApi("men");
-                  dispatch(action);
-                }}
-              >
-                Men
-              </button>
+              <button className={styles.colButtonNav} onClick={() => {
+                { renderCategoryProducts('men') }
+              }}>Men</button>
             </NavLink>
           </Col>
 
           <Col span={24} className={styles.colItemNav}>
             <NavLink to={`/category`}>
-              <button
-                className={styles.colButtonNav}
-                onClick={() => {
-                  const action = getProductByCategoryApi("adidas");
-                  dispatch(action);
-                }}
-              >
-                Adidas
-              </button>
+              <button className={styles.colButtonNav} onClick={() => {
+                { renderCategoryProducts('adidas') }
+              }}>Adidas</button>
             </NavLink>
           </Col>
 
           <Col span={24} className={styles.colItemNav}>
             <NavLink to={`/category`}>
-              <button
-                className={styles.colButtonNav}
-                onClick={() => {
-                  const action = getProductByCategoryApi("nike");
-                  dispatch(action);
-                }}
-              >
-                Nike
-              </button>
+              <button className={styles.colButtonNav} onClick={() => {
+                { renderCategoryProducts('nike') }
+              }}>Nike</button>
+            </NavLink>
+          </Col>
+
+          <Col span={24} className={styles.colItemNav}>
+            <NavLink to={`/category`}>
+              <button className={styles.colButtonNav} onClick={() => {
+                { renderCategoryProducts('vans_converse') }
+              }}>Vans</button>
             </NavLink>
           </Col>
 
