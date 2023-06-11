@@ -9,9 +9,9 @@ import ProductCol4 from "../../Components/Product/ProductCol4";
 type Props = {};
 
 // eslint-disable-next-line no-empty-pattern
-export default function Category({}: Props) {
+export default function Search({}: Props) {
   // Get State
-  const { arrProductSearch, categoryName } = useSelector(
+  const { arrProductSearch, searchValue } = useSelector(
     (state: RootState) => state.productReducer
   );
 
@@ -27,7 +27,7 @@ export default function Category({}: Props) {
 
   return (
     <div>
-      <h3 className={styles.headlineTitle}>{categoryName}</h3>
+      <h3 className={styles.headlineTitle}>Search {searchValue} </h3>
       <div className={styles.mx}>
         <Row gutter={[24, 24]}>{renderProductsSearch()}</Row>
       </div>

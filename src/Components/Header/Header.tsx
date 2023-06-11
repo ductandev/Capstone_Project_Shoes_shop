@@ -15,6 +15,7 @@ import {
   getCategoryNameAction,
   getProductByCategoryApi,
   getProductByKeyWordApi,
+  getSearchValueAction,
 } from "../../Redux/reducers/productReducer";
 
 const items: MenuProps["items"] = [
@@ -121,11 +122,14 @@ export default function Header({}: Props) {
 
   const renderSearchProducts = (value: string) => {
     const action = getProductByKeyWordApi(value);
+
     dispatch(action);
   };
 
   const onSearch = (value: string) => {
     renderSearchProducts(value);
+    const actionGetNameCategory = getSearchValueAction(value);
+    dispatch(actionGetNameCategory);
   };
 
   return (
