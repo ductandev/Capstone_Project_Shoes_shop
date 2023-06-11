@@ -55,6 +55,7 @@ export interface ProductState {
     categoryName: string
     productDetail: ProductDetailModel | null
     arrProductSearch: ProductModel[]
+    searchValue: string
 }
 const initialState: ProductState = {
     arrProduct: [],
@@ -62,8 +63,8 @@ const initialState: ProductState = {
     arrCategory: [],
     categoryName: "",
     productDetail: null,
-    arrProductSearch: []
-
+    arrProductSearch: [],
+    searchValue: ""
 }
 const productReducer = createSlice({
     name: 'productReducer',
@@ -87,10 +88,13 @@ const productReducer = createSlice({
         getSearchProductAction: (state: ProductState, action: PayloadAction<ProductModel[]>) => {
             state.arrProductSearch = action.payload;
         },
+        getSearchValueAction: (state: ProductState, action: PayloadAction<string>) => {
+            state.searchValue = action.payload;
+        },
     }
 });
 
-export const { getProductsAction, getPagingAction, getCategoryAction, getProductByIdAction, getCategoryNameAction, getSearchProductAction } = productReducer.actions
+export const { getProductsAction, getPagingAction, getCategoryAction, getProductByIdAction, getCategoryNameAction, getSearchProductAction, getSearchValueAction } = productReducer.actions
 
 export default productReducer.reducer
 
