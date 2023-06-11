@@ -1,33 +1,29 @@
 .container {
-  max-width: 320px;
+  max-width: 1320px;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 75px;
 }
 
 .logo {
-  width: 40px;
+  width: 150px;
   padding: 5px;
   margin-bottom: 20px;
   object-fit: cover;
+  border-radius: 50%;
 }
 
-.errorsText {
-  color: red;
-  font-size: 15px;
-  margin: 5px 0px;
-}
-
-.inputLogin,
-.buttonLogin {
+.inputProfile,
+.buttonProfile {
   border-radius: 3px;
   font-size: 14px;
   line-height: 28px;
   letter-spacing: normal;
   margin-top: 15px;
-  color: #8e8e8e;
+  color: #3b3b3b;
+  width: 100%;
 }
 
-.buttonLogin {
+.buttonProfile {
   border-radius: 3px;
   background-color: #000000;
   border: none;
@@ -55,7 +51,7 @@
   line-height: 23px;
 }
 
-.textByLogin {
+.textByProfile {
   color: #8d8d8d;
   font-size: 12px;
   text-align: center;
@@ -64,18 +60,18 @@
   margin-bottom: 15px;
 }
 
-.textByLogin p {
+.textByProfile p {
   margin: 0px;
 }
 
-.textLoginFacebook,
+.textProfileFacebook,
 .textJoinUs {
   color: #acacac;
   font-size: 12px;
   line-height: 23px;
 }
 
-.textLoginFacebook {
+.textProfileFacebook {
   text-align: start;
 }
 .textJoinUs {

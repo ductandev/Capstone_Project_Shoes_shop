@@ -10,6 +10,7 @@ import { createBrowserHistory } from "history";
 import HomeTemplate from "./Templates/HomeTemplate";
 import Login from "./Pages/Login/Login";
 import Profile from "./Pages/Profile/Profile";
+import ProfileTablet from "./Pages/Profile/ProfileTablet";
 import Register from "./Pages/Register/Register";
 import Cart from "./Pages/Cart/Cart";
 import Favourite from "./Pages/Favourite/Favourite";
@@ -44,10 +45,26 @@ root.render(
           ></Route>
           <Route path="category" element={<Category />}></Route>
           <Route path="detail">
-  <Route path=':id' element={<ResponsiveItem component={Detail} largeTableComponent={DetailMobile}/>}></Route>
+            <Route
+              path=":id"
+              element={
+                <ResponsiveItem
+                  component={Detail}
+                  largeTableComponent={DetailMobile}
+                />
+              }
+            ></Route>
           </Route>
           <Route path="login" element={<Login />}></Route>
-          <Route path="profile" element={<Profile />}></Route>
+          <Route
+            path="profile"
+            element={
+              <ResponsiveItem
+                component={Profile}
+                largeTableComponent={ProfileTablet}
+              />
+            }
+          ></Route>
           <Route path="register" element={<Register />} />
           <Route path="cart" element={<Cart />} />
           <Route path="shoestore" element={<ShoeStore />} />

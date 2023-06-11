@@ -65,27 +65,25 @@ http.interceptors.request.use(
   }
 );
 
+
 //Cấu hình cho response (kết quả trả về từ api)
 http.interceptors.response.use(
   (res) => {
     return res;
   },
   (err) => {
-    //Xử lý lỗi cho api bị lỗi theo status code
     console.log(err);
     console.log(err.response?.status);
 
     if (err.response?.status === 401) {
-      //Đã đăng nhập nhưng hết hạn (gọi api refresh token)
-
-
-      //Chưa đăng nhập
       alert("Đăng nhập để vào trang này !");
       history.push("/login");
+      return Promise.reject(err);
     }
     if (err.response?.status === 403) {
       alert("Không đủ quyền truy cập vào trang này !");
       history.push("/admin/login");
+      return Promise.reject(err);
     }
     return Promise.reject(err);
   }

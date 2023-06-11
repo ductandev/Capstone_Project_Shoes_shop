@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom";
-import { Col, Row, Input, Space, Carousel } from "antd";
-import { HeartOutlined, ShoppingOutlined } from "@ant-design/icons";
+import type { MenuProps } from "antd";
+import { Col, Row, Input, Space, Carousel, Dropdown } from "antd";
+import {
+  HeartOutlined,
+  ShoppingOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import styles from "./header.module.css";
 import { DispatchType, RootState } from "../../Redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +15,35 @@ import {
   getCategoryNameAction,
   getProductByCategoryApi,
 } from "../../Redux/reducers/productReducer";
+
+const items: MenuProps["items"] = [
+  {
+    key: "1",
+    label: (
+      <button className={styles.buttonSignIn}>
+        <NavLink className="nav-link" to="/profile">
+          Profile
+        </NavLink>
+      </button>
+    ),
+  },
+  {
+    key: "2",
+    label: (
+      <button
+        className={styles.buttonSignIn}
+        onClick={() => {
+          clearStorage(USER_LOGIN);
+          window.location.reload(); //f5
+        }}
+      >
+        <NavLink className="nav-link" to="/">
+          Sign Out
+        </NavLink>
+      </button>
+    ),
+  },
+];
 
 type Props = {};
 
@@ -28,21 +62,16 @@ export default function Header({}: Props) {
 
       return (
         <>
-          <button className={styles.buttonJoinUs}>
-            <NavLink className="nav-link" to="/profile">
-              Profile
-            </NavLink>
-          </button>
-          <button
-            className={styles.buttonSignIn}
-            onClick={() => {
-              clearStorage(USER_LOGIN);
-              window.location.reload(); //f5
-            }}
-          >
-            <NavLink className="nav-link" to="/">
-              Sign Out
-            </NavLink>
+          <button className={styles.buttonUser}>
+            <Dropdown
+              menu={{ items }}
+              placement="bottom"
+              arrow={{ pointAtCenter: true }}
+            >
+              <div className={styles.iconUser}>
+                <UserOutlined />
+              </div>
+            </Dropdown>
           </button>
         </>
       );
@@ -61,6 +90,20 @@ export default function Header({}: Props) {
             </NavLink>
           </button>
         </>
+      );
+    }
+  };
+
+  const renderFavourite = () => {
+    if (typeof userLogin !== "undefined") {
+      return (
+        <Col span={4} className={styles.end}>
+          <button className={styles.heartButton}>
+            <NavLink className="nav-link" to="/favourite">
+              <HeartOutlined />
+            </NavLink>
+          </button>
+        </Col>
       );
     }
   };
@@ -192,15 +235,8 @@ export default function Header({}: Props) {
                 <Search placeholder="Search" allowClear onSearch={onSearch} />
               </Space>
             </Col>
-            <Col span={4}>
-              <button className={styles.heartButton}>
-                <NavLink className="nav-link" to="/favourite">
-                  <HeartOutlined />
-                </NavLink>
-              </button>
-            </Col>
-            <Col span={4}>
-              {" "}
+            {renderFavourite()}
+            <Col span={4} className={styles.end}>
               <button className={styles.userButton}>
                 <NavLink className="nav-link" to="/cart">
                   <ShoppingOutlined />

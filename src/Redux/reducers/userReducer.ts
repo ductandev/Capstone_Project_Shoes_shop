@@ -52,7 +52,10 @@ export const loginAsyncAction = createAsyncThunk(
       console.log(res);
 
       setStoreJson(USER_LOGIN, res.data.content);
-      history.push("/profile");
+
+      console.log(history);
+
+      history.push("/");
 
       return res.data.content;
     } catch (err) {
@@ -77,15 +80,12 @@ export const getProfileActionApi = createAsyncThunk(
     try {
       const state = getState() as RootState; // Thêm kiểu RootState cho state
       const accessToken = state.userReducer.userLogin?.accessToken; // Sử dụng optional chaining để tránh lỗi khi userLogin là undefined
-      // console.log("🚀 ~ file: userReducer.ts:72 ~ accessToken:", accessToken)
-      if (accessToken) {
-        const res = await http.post(`/api/Users/getProfile`, { accessToken });
-        return res.data.content;
-      } else {
-      }
+      const res = await http.post(`/api/Users/getProfile`, { accessToken });
+      return res.data.content;
     } catch (err) {
       throw err;
     }
+
   }
 );
 
@@ -99,22 +99,13 @@ export const getFavouriteActionApi = createAsyncThunk(
 
       const state = getState() as RootState;
       const accessToken = state.userReducer.userLogin?.accessToken;
-      if (accessToken) {
-        const config: AxiosRequestConfig = {
-          headers: {
-            Authorization: `Bearer ${accessToken}`
-          }
-        };
-        console.log("🚀 ~ file: userReducer.ts:115 ~ config:", config)
-
-        const res = await http.get(`/api/Users/getproductfavorite`, config);
-        console.log("🚀 ~ file: userReducer.ts:118 ~ res:", res.data.content.productsFavorite)
-        return res.data.content.productsFavorite;
-
-      } else {
-        // Xử lý trường hợp không có accessToken
-      }
-
+      const config: AxiosRequestConfig = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      };
+      const res = await http.get(`/api/Users/getproductfavorite`, config);
+      return res.data.content.productsFavorite;
     } catch (err) {
       throw err;
     }

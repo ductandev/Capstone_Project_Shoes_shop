@@ -1,15 +1,70 @@
 import React, { useState } from "react";
+import type { MenuProps } from "antd";
 import { NavLink } from "react-router-dom";
-import { Col, Row, Input, Image, Space, Badge, Drawer } from "antd";
+import { Col, Row, Input, Dropdown, Drawer } from "antd";
 import {
   BarsOutlined,
   ShoppingOutlined,
   UserOutlined,
+  HeartOutlined,
 } from "@ant-design/icons";
 import styles from "./headerMobile.styles.module.css";
 import { getProductByCategoryApi } from "../../Redux/reducers/productReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../../Redux/configStore";
+import { USER_LOGIN, clearStorage } from "../../utils/config";
+
+const items: MenuProps["items"] = [
+  {
+    key: "1",
+    label: (
+      <button className={styles.buttonSignIn}>
+        <NavLink className="nav-link" to="/profile">
+          Profile
+        </NavLink>
+      </button>
+    ),
+  },
+  {
+    key: "2",
+    label: (
+      <button
+        className={styles.buttonSignIn}
+        onClick={() => {
+          clearStorage(USER_LOGIN);
+          window.location.reload(); //f5
+        }}
+      >
+        <NavLink className="nav-link" to="/">
+          Sign Out
+        </NavLink>
+      </button>
+    ),
+  },
+];
+
+const items2 = [
+  {
+    key: "3",
+    label: (
+      <button className={styles.buttonSignIn}>
+        <NavLink className="nav-link" to="/register">
+          Join Us
+        </NavLink>
+      </button>
+    ),
+  },
+  {
+    key: "4",
+    label: (
+      <button className={styles.buttonSignIn}>
+        <NavLink className="nav-link" to="/login">
+          Sign In
+        </NavLink>
+      </button>
+    ),
+  },
+];
 
 type Props = {};
 
@@ -17,7 +72,54 @@ const { Search } = Input;
 
 const onSearch = (value: string) => console.log(value);
 
-export default function HeaderMobile({ }: Props) {
+export default function HeaderMobile({}: Props) {
+  const { userLogin } = useSelector((state: RootState) => state.userReducer);
+
+  const renderFavourite = () => {
+    if (typeof userLogin !== "undefined") {
+      return (
+        <button className={styles.buttonIconNav}>
+          <NavLink className="nav-link" to="/favourite">
+            <HeartOutlined />
+          </NavLink>
+        </button>
+      );
+    }
+  };
+
+  const renderLoginLink = () => {
+    if (typeof userLogin !== "undefined") {
+      console.log("đã login");
+      return (
+        <>
+          <button className={styles.buttonIconNav}>
+            <Dropdown
+              menu={{ items }}
+              placement="bottom"
+              arrow={{ pointAtCenter: true }}
+            >
+              <UserOutlined />
+            </Dropdown>
+          </button>
+        </>
+      );
+    } else {
+      console.log("chưa login");
+      return (
+        <>
+          <button className={styles.buttonIconNav}>
+            <Dropdown
+              menu={{ items: items2 }} // Sử dụng biến items2 ở đây
+              placement="bottom"
+              arrow={{ pointAtCenter: true }}
+            >
+              <UserOutlined />
+            </Dropdown>
+          </button>
+        </>
+      );
+    }
+  };
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
@@ -28,12 +130,10 @@ export default function HeaderMobile({ }: Props) {
     setOpen(false);
   };
 
-// Get State
-  const { } = useSelector((state: RootState) => state.productReducer);
+  // Get State
+  const {} = useSelector((state: RootState) => state.productReducer);
   const dispatch: DispatchType = useDispatch();
   return (
-
-
     <div>
       <Row className={styles.topHeader} align="middle">
         <Col span={8}>
@@ -45,20 +145,15 @@ export default function HeaderMobile({ }: Props) {
             />
           </NavLink>
         </Col>
-        <Col span={16}>
+        <Col flex="auto">
           <Row justify="end">
+            {renderFavourite()}
             <button className={styles.buttonIconNav}>
               <NavLink className="nav-link" to="/cart">
                 <ShoppingOutlined />
               </NavLink>
             </button>
-
-            <button className={styles.buttonIconNav}>
-              <NavLink className="nav-link" to="/login">
-                <UserOutlined />
-              </NavLink>
-            </button>
-
+            {renderLoginLink()}
             <button className={styles.buttonIconNav} onClick={showDrawer}>
               <BarsOutlined />
             </button>
@@ -86,47 +181,82 @@ export default function HeaderMobile({ }: Props) {
         <Row justify="center">
           <Col span={24} className={styles.colItemNav}>
             <NavLink to={`/category`}>
-              <button className={styles.colButtonNav} onClick={() => {
-                const action = getProductByCategoryApi('women')
-                dispatch(action)
-              }}>Woman</button>
-            </NavLink>
-          </Col>
-          
-          <Col span={24} className={styles.colItemNav}>
-            <NavLink to={`/category`}>
-              <button className={styles.colButtonNav} onClick={() => {
-                const action = getProductByCategoryApi('men')
-                dispatch(action)
-              }}>Men</button>
+              <button
+                className={styles.colButtonNav}
+                onClick={() => {
+                  const action = getProductByCategoryApi("women");
+                  dispatch(action);
+                }}
+              >
+                Woman
+              </button>
             </NavLink>
           </Col>
 
           <Col span={24} className={styles.colItemNav}>
             <NavLink to={`/category`}>
-              <button className={styles.colButtonNav} onClick={() => {
-                const action = getProductByCategoryApi('adidas')
-                dispatch(action)
-              }}>Adidas</button>
+              <button
+                className={styles.colButtonNav}
+                onClick={() => {
+                  const action = getProductByCategoryApi("men");
+                  dispatch(action);
+                }}
+              >
+                Men
+              </button>
             </NavLink>
           </Col>
 
           <Col span={24} className={styles.colItemNav}>
             <NavLink to={`/category`}>
-              <button className={styles.colButtonNav} onClick={() => {
-                const action = getProductByCategoryApi('nike')
-                dispatch(action)
-              }}>Nike</button>
+              <button
+                className={styles.colButtonNav}
+                onClick={() => {
+                  const action = getProductByCategoryApi("adidas");
+                  dispatch(action);
+                }}
+              >
+                Adidas
+              </button>
             </NavLink>
           </Col>
 
           <Col span={24} className={styles.colItemNav}>
             <NavLink to={`/category`}>
-              <button className={styles.colButtonNav} onClick={() => {
-                const action = getProductByCategoryApi('vans_converse')
-                dispatch(action)
-              }}>Vans</button>
+              <button
+                className={styles.colButtonNav}
+                onClick={() => {
+                  const action = getProductByCategoryApi("nike");
+                  dispatch(action);
+                }}
+              >
+                Nike
+              </button>
             </NavLink>
+          </Col>
+
+          <Col span={24} className={styles.colItemNav}>
+            <NavLink to={`/category`}>
+              <button
+                className={styles.colButtonNav}
+                onClick={() => {
+                  const action = getProductByCategoryApi("vans_converse");
+                  dispatch(action);
+                }}
+              >
+                Vans
+              </button>
+            </NavLink>
+          </Col>
+
+          <Col span={24} className={styles.colItemNav}>
+            <Row justify="center">
+              {/* <button className={styles.buttonIconNav}>
+              <NavLink className="nav-link" to="/login">
+                <UserOutlined />
+              </NavLink>
+            </button> */}
+            </Row>
           </Col>
         </Row>
       </Drawer>
