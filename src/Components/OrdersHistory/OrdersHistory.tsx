@@ -73,7 +73,7 @@ const OrdersHistory: React.FC = () => {
           const price = record["price"];
           const quantity = record["quantity"];
           const total = price * quantity;
-          return total;
+          return total + ` $`;
         },
       };
     }

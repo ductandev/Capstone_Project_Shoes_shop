@@ -49,11 +49,18 @@ export default function Header({}: Props) {
     } else {
       console.log("chưa login");
       return (
-        <button className={styles.buttonSignIn}>
-          <NavLink className="nav-link" to="/login">
-            Sign In
-          </NavLink>
-        </button>
+        <>
+          <button className={styles.buttonJoinUs}>
+            <NavLink className="nav-link" to="/register">
+              Join Us
+            </NavLink>
+          </button>
+          <button className={styles.buttonSignIn}>
+            <NavLink className="nav-link" to="/login">
+              Sign In
+            </NavLink>
+          </button>
+        </>
       );
     }
   };
@@ -88,11 +95,7 @@ export default function Header({}: Props) {
                 Find a Store
               </NavLink>
             </button>
-            <button className={styles.buttonJoinUs}>
-              <NavLink className="nav-link" to="/register">
-                Join Us
-              </NavLink>
-            </button>
+
             {renderLoginLink()}
           </Row>
         </Col>
