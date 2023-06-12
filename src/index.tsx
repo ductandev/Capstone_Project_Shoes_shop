@@ -28,6 +28,7 @@ import DetailMobile from "./Pages/Detail/DetailMobile";
 import Search from "./Pages/Search/Search";
 import Payment from "./Pages/Payment/Payment";
 import CartMobile from "./Pages/Cart/CartMobile";
+import PaymentMobile from "./Pages/Payment/PaymentMobile";
 
 export const history: any = createBrowserHistory();
 
@@ -63,7 +64,7 @@ root.render(
           <Route path="register" element={<Register />} />
           <Route path="search" element={<Search />} />
           <Route path="cart" element={<ResponsiveItem component={Cart} tabletComponent={CartMobile} />}></Route> 
-          <Route path="payment" element={<Payment />} />
+          <Route path="payment" element={<ResponsiveItem component={Payment} largeTableComponent={PaymentMobile} />} />
           <Route path="shoestore" element={<ShoeStore />} />
           <Route path="favourite" element={<Favourite />} />
         </Route>

@@ -2,7 +2,7 @@
 import { Checkbox, Col, Input, Row } from 'antd'
 import React from 'react'
 import { NavLink, Navigate, useNavigate } from 'react-router-dom'
-import styles from './payment.module.css'
+import styles from './paymentMobile.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { DispatchType, RootState } from '../../Redux/configStore'
 import { ProductCart } from '../../Redux/reducers/cartReducer'
@@ -25,7 +25,7 @@ export interface OderFrm {
 }
 
 
-export default function Payment({ }: Props) {
+export default function PaymentMobile({ }: Props) {
 
 
     const { arrProductCart } = useSelector((state: RootState) => state.cartReducer);
@@ -60,10 +60,10 @@ export default function Payment({ }: Props) {
         onSubmit: async (values: OderFrm) => {
             try {
                 alert(" Order Success !!!");
-                navigate('/')                             
+                navigate('/')
 
-            }catch(err) {
-                alert("Order Fail ! Please try agian !");        
+            } catch (err) {
+                alert("Order Fail ! Please try agian !");
 
             }
         }
@@ -74,10 +74,10 @@ export default function Payment({ }: Props) {
         return arrProductCart.map((item: ProductCart, index) => {
             return (
                 <Row justify={'space-between'}>
-                    <Col span={16} key={item.id}>
+                    <Col span={11} key={item.id}>
                         <img className={styles.img} src={item.image} alt="..." />
                     </Col>
-                    <Col span={7} key={item.id}>
+                    <Col span={9} key={item.id}>
                         <p className={styles.prodName}>{item.name}</p>
                         <p className={styles.prodPrice}>Code: {item.id}</p>
                         <p className={styles.prodPrice}>{item.price} $</p>
@@ -137,19 +137,20 @@ export default function Payment({ }: Props) {
 
 
 
-
-                    <Row className={styles.mb} justify={'space-between'} gutter={[16, 32]}>
-                        <Col sm={24} lg={12}>
-                            <input className={styles.input1} name='postalCode' placeholder="Postal Code" onInput={checkoutFrom.handleChange} onBlur={checkoutFrom.handleBlur} />
-                            {checkoutFrom.errors.postalCode && <p className={styles.err}>{checkoutFrom.errors.postalCode} </p>}
-
-                        </Col>
-                        <Col sm={24} lg={12}>
-                            <input className={styles.input1} name='city' placeholder="City" onInput={checkoutFrom.handleChange} onBlur={checkoutFrom.handleBlur} />
-                            {checkoutFrom.errors.city && <p className={styles.err}>{checkoutFrom.errors.city} </p>}
-
-                        </Col>
-                    </Row>
+                    <div className={styles.hight}>
+                        <Row className={styles.mb} justify={'space-between'} gutter={[16, 32]}>
+                            <Col xs={24} sm={24} md={24} lg={12}>
+                                <div className={styles.mbPostalCode}>
+                                <input className={styles.input1} name='postalCode' placeholder="Postal Code" onInput={checkoutFrom.handleChange} onBlur={checkoutFrom.handleBlur} />
+                                {checkoutFrom.errors.postalCode && <p className={styles.err}>{checkoutFrom.errors.postalCode} </p>}  
+                                </div>
+                            </Col>
+                            <Col xs={24} sm={24} md={24} lg={12}>
+                                <input className={styles.input1} name='city' placeholder="City" onInput={checkoutFrom.handleChange} onBlur={checkoutFrom.handleBlur} />
+                                {checkoutFrom.errors.city && <p className={styles.err}>{checkoutFrom.errors.city} </p>}
+                            </Col>
+                        </Row>
+                    </div>
 
                     <div className={styles.mb}>
                         <select className={styles.input1} name='province' placeholder='Province/Municipality' onInput={checkoutFrom.handleChange} onBlur={checkoutFrom.handleBlur}>
@@ -265,7 +266,7 @@ export default function Payment({ }: Props) {
 
 
 
-                <Col className={styles.me} xs={23} sm={21} md={15} lg={10} xl={5}>
+                <Col xs={23} sm={21} md={15} lg={10} xl={5}>
                     <h2 className={styles.title3}>Order Summary</h2>
                     <Row justify={'space-between'}>
                         <Col className={styles.title4}>
