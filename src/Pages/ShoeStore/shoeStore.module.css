@@ -1,0 +1,49 @@
+.container {
+  /* max-width: 1320px; */
+  margin: auto;
+  padding: 0px 0px 50px 40px;
+}
+.map {
+  width: 100%;
+  object-fit: cover;
+  
+}
+
+.mapMini {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  line-height: 28px;
+  color: #000;
+}
+
+.listStore {
+  margin-top: 20px;
+}
+
+.name {
+  font-size: 26px;
+  line-height: 24px;
+  letter-spacing: normal;
+  color: black;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: normal;
+  color: #707070;
+}
+
+.search {
+  height: 40px;
+}
+.text {
+  padding-left: 20px;
+}
