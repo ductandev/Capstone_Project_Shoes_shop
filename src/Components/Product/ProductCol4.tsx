@@ -1,5 +1,5 @@
 // tsrfc
-import styles from "./ProductCol4.module.css";
+import styles from "./productCol4.module.css";
 
 import React from 'react'
 import { NavLink } from 'react-router-dom'
