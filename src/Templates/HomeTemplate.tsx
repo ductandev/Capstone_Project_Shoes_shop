@@ -2,6 +2,8 @@
 import React from "react";
 import Header from "../Components/Header/Header";
 import HeaderMobile from "../Components/Header/HeaderMobile";
+import Footer from "../Components/Footer/Footer";
+import FooterMobile from "../Components/Footer/FooterMobile";
 import ResponsiveItem from "./ResponsiveItem";
 import { Outlet } from "react-router-dom";
 
@@ -16,7 +18,7 @@ const HomeTemplate: React.FC = ({}: Props): JSX.Element => {
         <Outlet></Outlet>
       </div>
 
-      <footer className="bg-dark text-white text-center">Footer</footer>
+      <ResponsiveItem component={Footer} largeTableComponent={FooterMobile} />
     </>
   );
 };

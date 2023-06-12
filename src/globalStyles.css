@@ -23,3 +23,16 @@ a {
 a:hover {
     color: rgb(168, 168, 168);
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*:focus {
+  box-shadow: none;
+  outline: none;
+}
+body {
+  transition: all 1.5s;
+}
