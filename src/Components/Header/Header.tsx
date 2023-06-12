@@ -110,9 +110,10 @@ export default function Header({}: Props) {
   };
 
   // Get State
-  const { arrProductCart } = useSelector((state: RootState) => state.cartReducer);
+  const { arrProductCart } = useSelector(
+    (state: RootState) => state.cartReducer
+  );
   const dispatch: DispatchType = useDispatch();
-
 
   const renderCategoryProducts = (item: string) => {
     const action = getProductByCategoryApi(item);
@@ -172,37 +173,72 @@ export default function Header({}: Props) {
           <Row justify="center">
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
-                <button className={styles.buttonMainNav} onClick={() => {
-                  { renderCategoryProducts('women') }
-                }}>Woman</button>
+                <button
+                  className={styles.buttonMainNav}
+                  onClick={() => {
+                    {
+                      renderCategoryProducts("women");
+                    }
+                  }}
+                >
+                  Woman
+                </button>
               </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
-                <button className={styles.buttonMainNav} onClick={() => {
-                  { renderCategoryProducts('men') }
-                }}>Men</button>
+                <button
+                  className={styles.buttonMainNav}
+                  onClick={() => {
+                    {
+                      renderCategoryProducts("men");
+                    }
+                  }}
+                >
+                  Men
+                </button>
               </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
-                <button className={styles.buttonMainNav} onClick={() => {
-                  { renderCategoryProducts('adidas') }
-                }}>Adidas</button>
+                <button
+                  className={styles.buttonMainNav}
+                  onClick={() => {
+                    {
+                      renderCategoryProducts("adidas");
+                    }
+                  }}
+                >
+                  Adidas
+                </button>
               </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
-                <button className={styles.buttonMainNav} onClick={() => {
-                  { renderCategoryProducts('nike') }
-                }}>Nike</button>
+                <button
+                  className={styles.buttonMainNav}
+                  onClick={() => {
+                    {
+                      renderCategoryProducts("nike");
+                    }
+                  }}
+                >
+                  Nike
+                </button>
               </NavLink>
             </Col>
             <Col span={4} className={styles.colMainNav}>
               <NavLink to={`/category`}>
-                <button className={styles.buttonMainNav} onClick={() => {
-                  { renderCategoryProducts('vans_converse') }
-                }}>Vans</button>
+                <button
+                  className={styles.buttonMainNav}
+                  onClick={() => {
+                    {
+                      renderCategoryProducts("vans_converse");
+                    }
+                  }}
+                >
+                  Vans
+                </button>
               </NavLink>
             </Col>
           </Row>{" "}
@@ -221,8 +257,14 @@ export default function Header({}: Props) {
               <button className={styles.userButton}>
                 <NavLink className="nav-link" to="/cart">
                   <ShoppingOutlined />
-                  <span className={styles.cartNumber} style={{ visibility: "visible" }}>
-                    {arrProductCart.reduce((total, item) => total + item.quantity, 0)}
+                  <span
+                    className={styles.cartNumber}
+                    style={{ visibility: "visible" }}
+                  >
+                    {arrProductCart.reduce(
+                      (total, item) => total + item.quantity,
+                      0
+                    )}
                   </span>
                 </NavLink>
               </button>
