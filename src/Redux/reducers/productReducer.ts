@@ -2,6 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { DispatchType } from '../configStore';
 import { httpNonAuth } from '../../utils/config';
 
+export interface ShopModel {
+    id: string;
+    name: string;
+    alias: string;
+    description: string;
+    image: string;
+
+}
 
 export interface ProductModel {
     id: number;
@@ -56,6 +64,7 @@ export interface ProductState {
     productDetail: ProductDetailModel | null
     arrProductSearch: ProductModel[]
     searchValue: string
+    arrShopShoe: ShopModel[]
 }
 const initialState: ProductState = {
     arrProduct: [],
@@ -64,7 +73,8 @@ const initialState: ProductState = {
     categoryName: "",
     productDetail: null,
     arrProductSearch: [],
-    searchValue: ""
+    searchValue: "",
+    arrShopShoe: []
 }
 const productReducer = createSlice({
     name: 'productReducer',
@@ -91,10 +101,13 @@ const productReducer = createSlice({
         getSearchValueAction: (state: ProductState, action: PayloadAction<string>) => {
             state.searchValue = action.payload;
         },
+        getShopAction: (state: ProductState, action: PayloadAction<ShopModel[]>) => {
+            state.arrShopShoe = action.payload;
+        },
     }
 });
 
-export const { getProductsAction, getPagingAction, getCategoryAction, getProductByIdAction, getCategoryNameAction, getSearchProductAction, getSearchValueAction } = productReducer.actions
+export const { getProductsAction, getPagingAction, getCategoryAction, getProductByIdAction, getCategoryNameAction, getSearchProductAction, getSearchValueAction , getShopAction} = productReducer.actions
 
 export default productReducer.reducer
 
@@ -152,3 +165,17 @@ export const getProductByKeyWordApi = (keyword: string) => {
         dispatch(action);
     }
 }
+
+export const getShopApi =  (keyword: string) => {
+    return async (dispatch: DispatchType) => {
+
+        const res = await httpNonAuth.get(`/api/Product/getAllStore?keyword=${keyword}`);
+
+        
+        console.log("🚀 ~ file: productReducer.ts:166 ~ return ~ res:", res.data.content)
+
+        const action: PayloadAction<ShopModel[]> = getShopAction(res.data.content);
+        dispatch(action);
+    }
+}
+
