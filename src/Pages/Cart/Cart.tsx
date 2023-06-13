@@ -1,5 +1,5 @@
 // tsrfc
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Row, Space, Table } from 'antd';
 
 import styles from './cart.module.css'
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ColumnsType } from "antd/es/table";
 import { changeQuantityAction, delProductCartAction } from "../../Redux/reducers/cartReducer";
 import { NavLink } from "react-router-dom";
+import { getStoreJson } from "../../utils/config";
 
 interface DataType {
   id: number;
@@ -26,7 +27,8 @@ export default function Cart({ }: Props) {
   const dispatch: DispatchType = useDispatch();
 
 
-  const data: DataType[] = arrProductCart;
+  const data: DataType[] = getStoreJson('arrProductCart');
+  // const data: DataType[] = arrProduc1tCart;
 
   const columns: ColumnsType<DataType> = [
     {

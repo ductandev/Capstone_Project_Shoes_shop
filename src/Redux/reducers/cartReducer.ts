@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { DispatchType } from '../configStore';
+import { getStoreJson, setStoreJson } from '../../utils/config';
 
 
 export interface ProductCart {
@@ -21,7 +22,7 @@ export interface CartState {
 }
 
 const initialState: CartState = {
-  arrProductCart: [],
+  arrProductCart: getStoreJson('arrProductCart'),
   idProductCart: 0,
   idQuantity: [],
 }
@@ -41,14 +42,18 @@ const cartReducer = createSlice({
       } else {
         state.arrProductCart.push(productClick)
       }
+      setStoreJson('arrProductCart', state.arrProductCart)
     },
+
     delProductCartAction: (state: CartState, action: PayloadAction<number>) => {
       let id = action.payload;
       let indexDel = state.arrProductCart.findIndex(prod => prod.id === id);
       if (indexDel !== -1) {
         state.arrProductCart.splice(indexDel, 1);
       }
+      setStoreJson('arrProductCart', state.arrProductCart)
     },
+
     changeQuantityAction: (state: CartState, action: PayloadAction<ProductQuantity>) => {
       let { id, quantity } = action.payload;
       let quantityProdCart = state.arrProductCart.find(prod => prod.id === id);
@@ -60,11 +65,13 @@ const cartReducer = createSlice({
           // Nếu prod.id khác với id được truyền vào thì phần tử đó sẽ được giữ lại trong mảng kết quả và ngược lại
           // Kết quả của phương thức filter() sẽ được gán lại cho mảng arrProductCart trong state, nhằm cập nhật giá trị mới của mảng này (có thể gọi là xóa)
           const confirmed = window.confirm('Do you really want to delete this product?');
-          if (confirmed){
+          if (confirmed) {
             state.arrProductCart = state.arrProductCart.filter(prod => prod.id !== id); //Đây là một hàm callback
+            setStoreJson('arrProductCart', state.arrProductCart)
           }
         } else {
           quantityProdCart.quantity += quantity;
+          setStoreJson('arrProductCart', state.arrProductCart)
         }
       }
     }
