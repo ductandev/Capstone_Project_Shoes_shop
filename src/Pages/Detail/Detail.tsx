@@ -84,7 +84,7 @@ export default function Detail({ }: Props) {
   return (
     <div>
       <div className={styles.mt}>
-        <div>
+        <div className={styles.mb}>
           <Row justify="space-evenly" gutter={[32, 32]}>
             <Col xs={24} md={10} lg={10} xl={10} >
               <img className={styles.bgImg} src={productDetail?.image} alt="..." width={535} style={{ objectFit: 'cover' }} />
