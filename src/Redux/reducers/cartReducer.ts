@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { getStoreJson, setStoreJson } from '../../utils/config';
+import { getStoreJson, setStoreJson } from '../../Util/config';
 
 
 export interface ProductCart {

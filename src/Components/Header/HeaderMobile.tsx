@@ -12,7 +12,7 @@ import styles from "./headerMobile.styles.module.css";
 import { getCategoryNameAction, getProductByCategoryApi } from "../../Redux/reducers/productReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../../Redux/configStore";
-import { USER_LOGIN, clearStorage } from "../../utils/config";
+import { USER_LOGIN, clearStorage } from "../../Util/config";
 
 const items: MenuProps["items"] = [
   {

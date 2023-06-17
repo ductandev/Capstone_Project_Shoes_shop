@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { DispatchType } from '../configStore';
-import { httpNonAuth } from '../../utils/config';
+import { httpNonAuth } from '../../Util/config';
+import { boolean } from 'yup';
 
 export interface ShopModel {
     id: string;
@@ -65,6 +66,7 @@ export interface ProductState {
     arrProductSearch: ProductModel[]
     searchValue: string
     arrShopShoe: ShopModel[]
+    idLoading: boolean
 }
 const initialState: ProductState = {
     arrProduct: [],
@@ -74,7 +76,8 @@ const initialState: ProductState = {
     productDetail: null,
     arrProductSearch: [],
     searchValue: "",
-    arrShopShoe: []
+    arrShopShoe: [],
+    idLoading: false,
 }
 const productReducer = createSlice({
     name: 'productReducer',

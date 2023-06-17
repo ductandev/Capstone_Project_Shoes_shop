@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ColumnsType } from "antd/es/table";
 import { changeQuantityAction, delProductCartAction } from "../../Redux/reducers/cartReducer";
 import { NavLink } from "react-router-dom";
-import { getStoreJson } from "../../utils/config";
+import { getStoreJson } from "../../Util/config";
 
 interface DataType {
   id: number;

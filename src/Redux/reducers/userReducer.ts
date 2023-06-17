@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getStoreJson, httpNonAuth, setStoreJson, http, USER_LOGIN } from "../../utils/config";
+import { getStoreJson, httpNonAuth, setStoreJson, http, USER_LOGIN } from "../../Util/config";
 import { UserLoginFrm } from "../../Pages/Login/Login";
 import { UserRegisterFrm } from "../../Pages/Register/Register";
 import { history } from "../../index";

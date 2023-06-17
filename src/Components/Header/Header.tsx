@@ -10,7 +10,7 @@ import styles from "./header.module.css";
 import { DispatchType, RootState } from "../../Redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 
-import { USER_LOGIN, clearStorage } from "../../utils/config";
+import { USER_LOGIN, clearStorage } from "../../Util/config";
 import {
   getCategoryNameAction,
   getProductByCategoryApi,

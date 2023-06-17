@@ -29,6 +29,7 @@ import Search from "./Pages/Search/Search";
 import Payment from "./Pages/Payment/Payment";
 import CartMobile from "./Pages/Cart/CartMobile";
 import PaymentMobile from "./Pages/Payment/PaymentMobile";
+import LoadingCustom from "./Components/Loading/LoadingCustom";
 
 export const history: any = createBrowserHistory();
 
@@ -38,6 +39,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <Provider store={store}>
     <Loading></Loading>
+    {/* <LoadingCustom></LoadingCustom> */}
     <HistoryRouter history={history}>
       <Routes>
         <Route path="" element={<HomeTemplate />}>
