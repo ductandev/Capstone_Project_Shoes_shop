@@ -1,1 +1,1 @@
-#### Link depploy web: https://shoe-shop-kappa.vercel.app/
+#### Link depploy web: https://capstone-project-shoes-shop.vercel.app/
