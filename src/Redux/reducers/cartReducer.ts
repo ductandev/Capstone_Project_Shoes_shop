@@ -21,7 +21,7 @@ export interface CartState {
 }
 
 const initialState: CartState = {
-  arrProductCart: getStoreJson('arrProductCart'),
+  arrProductCart: getStoreJson('arrProductCart') ? getStoreJson('arrProductCart') : [],
   idProductCart: 0,
   idQuantity: [],
 }

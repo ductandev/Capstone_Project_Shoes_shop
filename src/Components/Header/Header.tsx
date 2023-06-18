@@ -261,7 +261,7 @@ export default function Header({}: Props) {
                     className={styles.cartNumber}
                     style={{ visibility: "visible" }}
                   >
-                    {arrProductCart?.reduce(
+                    {arrProductCart.reduce(
                       (total, item) => total + item.quantity,
                       0
                     )}
