@@ -9,7 +9,7 @@ import {
   HeartOutlined,
 } from "@ant-design/icons";
 import styles from "./headerMobile.styles.module.css";
-import { getCategoryNameAction, getProductByCategoryApi } from "../../Redux/reducers/productReducer";
+import { getCategoryNameAction, getProductByCategoryApi, getProductByKeyWordApi, getSearchValueAction } from "../../Redux/reducers/productReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../../Redux/configStore";
 import { USER_LOGIN, clearStorage } from "../../Util/config";
@@ -73,7 +73,7 @@ const { Search } = Input;
 const onSearch = (value: string) => console.log(value);
 
 // eslint-disable-next-line no-empty-pattern
-export default function HeaderMobile({}: Props) {
+export default function HeaderMobile({ }: Props) {
   const { userLogin } = useSelector((state: RootState) => state.userReducer);
 
   const renderFavourite = () => {
@@ -143,6 +143,18 @@ export default function HeaderMobile({}: Props) {
     dispatch(actionGetNameCategory)
   }
 
+  const renderSearchProducts = (value: string) => {
+    const action = getProductByKeyWordApi(value);
+
+    dispatch(action);
+  };
+
+  const onSearch = (value: string) => {
+    renderSearchProducts(value);
+    const actionGetNameCategory = getSearchValueAction(value);
+    dispatch(actionGetNameCategory);
+  };
+
 
   return (
     <div>
@@ -177,12 +189,14 @@ export default function HeaderMobile({}: Props) {
 
       <Row className={styles.searchNav} align="middle">
         <Col span={24}>
-          <Search
-            placeholder="Search"
-            allowClear
-            onSearch={onSearch}
-            className={styles.pb10px}
-          />
+          <NavLink to={`/search`}>
+            <Search
+              placeholder="Search"
+              allowClear
+              onSearch={onSearch}
+              className={styles.pb10px}
+            />
+          </NavLink>
         </Col>
       </Row>
 
