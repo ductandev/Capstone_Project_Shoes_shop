@@ -50,6 +50,7 @@ export default function Detail({ }: Props) {
 
   // Get State
   const { productDetail } = useSelector((state: RootState) => state.productReducer);
+  console.log(productDetail)
   const dispatch: DispatchType = useDispatch();
   const param = useParams();
 
@@ -123,6 +124,8 @@ export default function Detail({ }: Props) {
         <h3 className={styles.title}>You Might Also Like</h3>
 
         <div className={styles.mx}>
+          {productDetail?.relatedProducts.length && 
+          <>
           <OwlCarousel className="slider-items owl-carousel" {...options}>
             {productDetail?.relatedProducts.map((item: RelatedProduct, index: number) => {
               return <div className='item' key={item.id}>
@@ -130,6 +133,7 @@ export default function Detail({ }: Props) {
               </div>
             })}
           </OwlCarousel>
+          </>}
         </div>
       </div>
     </div>

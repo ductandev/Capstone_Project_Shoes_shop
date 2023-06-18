@@ -20,7 +20,7 @@ import AllProduct from "../../Components/Product/AllProduct";
 type Props = {};
 
 // eslint-disable-next-line no-empty-pattern
-export default function Home({}: Props) {
+export default function Home({ }: Props) {
   //Owl Carousel Settings
   const options = {
     margin: 30,
@@ -100,9 +100,12 @@ export default function Home({}: Props) {
     <div>
       <h3 className={styles.headline}>IN THE SPOTLIGHT</h3>
       <div className={styles.ms}>
-        <OwlCarousel className="slider-items owl-carousel" {...options}>
-          {renderAllProducts()}
-        </OwlCarousel>
+        {arrProduct?.length && 
+        <>
+          <OwlCarousel className="slider-items owl-carousel" {...options}>
+            {renderAllProducts()}
+          </OwlCarousel>
+        </>}
       </div>
 
       <h3 className={styles.headline}>TRENDING</h3>
