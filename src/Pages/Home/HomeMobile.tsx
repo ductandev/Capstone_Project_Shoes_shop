@@ -75,7 +75,7 @@ export default function HomeMobile({}: Props) {
     getDataProductList();
     getPaging(1, 8);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+ }, []);
 
   const renderAllProducts = (): JSX.Element[] => {
     return arrProduct.map((item: ProductModel, index) => {
